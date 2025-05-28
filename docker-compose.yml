@@ -1,0 +1,32 @@
+services:
+  gp_rms_pgdb:
+    image: postgres:15
+    container_name: gp_rms_postgres_db
+    restart: always
+    environment:
+      POSTGRES_USER: gp_rms_admin
+      POSTGRES_PASSWORD: 123456
+      POSTGRES_DB: gp_rms_db
+    ports:
+      - '5434:5432'
+    volumes:
+      - gp_rms_data:/var/lib/postgresql/data
+
+  gp_rms_pgadmin:
+      image: dpage/pgadmin4:latest
+      platform: linux/amd64
+      container_name: gp_rms_pgadmin
+      ports:
+        - '5050:80'
+      environment:
+        PGADMIN_DEFAULT_EMAIL: dbadmin@gprms.com
+        PGADMIN_DEFAULT_PASSWORD: 123456
+      depends_on:
+        - gp_rms_pgdb
+      volumes:
+        - pgadmin_data:/var/lib/pgadmin
+
+
+volumes:
+  gp_rms_data:
+  pgadmin_data:

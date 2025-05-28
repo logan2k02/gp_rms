@@ -1,0 +1,39 @@
+/* You can add global styles to this file, and also import other style files */
+
+@use "@angular/material" as mat;
+
+html,
+body {
+  height: 100%;
+}
+body {
+  margin: 0;
+  font-family: Inter, "Helvetica Neue", sans-serif;
+}
+
+html {
+  @include mat.theme(
+    (
+      color: mat.$azure-palette,
+      typography: Inter,
+      density: 0,
+    )
+  );
+}
+
+$mat-icon-sizes: (
+  xs: 18px,
+  sm: 20px,
+  md: 24px,
+  lg: 28px,
+  xl: 32px,
+);
+
+@each $name, $size in $mat-icon-sizes {
+  .mat-icon-#{$name} {
+    font-size: $size;
+    height: $size;
+    width: $size;
+    line-height: $size;
+  }
+}

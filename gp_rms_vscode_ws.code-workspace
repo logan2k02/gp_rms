@@ -1,0 +1,21 @@
+{
+	"folders": [
+		{
+			"name": "backend",
+			"path": "backend"
+		},
+		{
+			"name": "frontend",
+			"path": "frontend"
+		},
+		{
+			"name": "ml-server",
+			"path": "ml-server"
+		},
+		{
+			"name": "root",
+			"path": "."
+		}
+	],
+	"settings": {}
+}
