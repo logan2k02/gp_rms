@@ -19,7 +19,7 @@
 # Notes:
 
 - Even though all the project repos(frontend and backend) are in the same folder it's good to work with seperate repos in production level.
-- Prisma Studio is a buggy one, so don't be afraid and try to solve any errors.
+- Prisma Studio is a buggy interface, so don't be afraid and try to solve any errors.
 
 # Tech Stack
 
