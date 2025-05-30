@@ -19,7 +19,7 @@
 # Notes:
 
 - Even though all the project repos(frontend and backend) are in the same folder it's good to work with seperate repos in production level.
-- Prisma Studio is a buggy one, so don't be afraid and try to solve any errors.
+- Prisma Studio is a buggy interface, so don't be afraid and try to solve any errors.
 
 # Tech Stack
 
@@ -38,7 +38,7 @@ There may be others service which will be added laters.
 
 ## `ml-server`
 
-This is for the Machile Learning Model. We'll later implement ML model(if needed). A python server(ml-server) will be needed to interact with the model.
+We'll later implement ML model(if needed). A python server(ml-server) will be needed to interact with the model.
 
 ---
 
