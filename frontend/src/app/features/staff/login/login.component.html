@@ -1,0 +1,54 @@
+<div class="container">
+  <mat-card class="form-container centered col-1">
+    <mat-card-header>
+      <mat-card-title-group>
+        <mat-card-title> Staff Login </mat-card-title>
+      </mat-card-title-group>
+    </mat-card-header>
+    <mat-card-content class="">
+      <form [formGroup]="form" (ngSubmit)="onFormSubmit()">
+        <mat-form-field>
+          <mat-label>Username</mat-label>
+          <input
+            matInput
+            type="text"
+            placeholder="john"
+            formControlName="username"
+          />
+          @if (form.get('username')?.invalid && form.get('username')?.touched) {
+          <mat-error>{{ errorMessage("username") }}</mat-error>
+          }
+        </mat-form-field>
+        <mat-form-field>
+          <mat-label>Password</mat-label>
+          <input
+            matInput
+            [type]="passwordVisible() ? 'text' : 'password'"
+            placeholder="john"
+            formControlName="password"
+          />
+          <button
+            [matTooltip]="passwordVisible() ? 'Hide password' : 'Show password'"
+            mat-icon-button
+            matSuffix
+            (click)="
+              $event.preventDefault(); passwordVisible.set(!passwordVisible())
+            "
+            [attr.aria-label]="
+              passwordVisible() ? 'Hide password' : 'Show password'
+            "
+            [attr.aria-pressed]="!passwordVisible()"
+          >
+            <mat-icon>{{
+              passwordVisible() ? "visibility_off" : "visibility"
+            }}</mat-icon>
+          </button>
+          @if (form.get('password')?.invalid && form.get('password')?.touched) {
+          <mat-error>{{ errorMessage("password") }}</mat-error>
+          }
+        </mat-form-field>
+        <button mat-flat-button>Login</button>
+      </form>
+    </mat-card-content>
+  </mat-card>
+</div>

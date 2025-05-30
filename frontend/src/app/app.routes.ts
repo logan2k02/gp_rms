@@ -6,4 +6,11 @@ export const routes: Routes = [
     loadComponent: () =>
       import('./features/home/home.component').then((m) => m.HomeComponent),
   },
+  {
+    path: 'staff',
+    loadComponent: () =>
+      import('./features/staff/login/login.component').then(
+        (m) => m.LoginComponent
+      ),
+  },
 ];
