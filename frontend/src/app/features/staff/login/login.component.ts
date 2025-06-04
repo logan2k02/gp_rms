@@ -11,7 +11,13 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
 import { MatTooltipModule } from '@angular/material/tooltip';
-import { AlertService } from '../../../core/services';
+import { Router } from '@angular/router';
+import { getEndpointNameForRole } from '../../../core/enums';
+import {
+  AlertService,
+  AuthService,
+  GlobalLoadingBarService,
+} from '../../../core/services';
 @Component({
   selector: 'app-login',
   imports: [
@@ -27,7 +33,10 @@ import { AlertService } from '../../../core/services';
   styleUrl: './login.component.scss',
 })
 export class LoginComponent {
-  alertService = inject(AlertService);
+  private alertService = inject(AlertService);
+  private loadingBar = inject(GlobalLoadingBarService);
+  private authService = inject(AuthService);
+  private router = inject(Router);
 
   form: FormGroup;
   passwordVisible = signal(false);
@@ -45,8 +54,6 @@ export class LoginComponent {
     });
   }
 
-  togglePasswordVisibility() {}
-
   errorMessage(controlName: string): string | null {
     if (this.form.get(controlName)?.hasError('required')) {
       return 'Field is required';
@@ -60,10 +67,28 @@ export class LoginComponent {
   }
 
   onFormSubmit() {
+    this.loadingBar.startLoading();
     if (!this.form.valid) {
+      this.alertService.error('Please fill in all fields');
+      this.loadingBar.stopLoading();
       return;
     }
 
-    this.alertService.success('Login successful!');
+    const { username, password } = this.form.value;
+    this.authService.staffLogin(username, password).subscribe({
+      next: (user) => {
+        this.alertService.success(`Welcome ${user.name.split(' ')[0]}!`);
+        this.loadingBar.stopLoading();
+        this.router.navigate(['/staff/' + getEndpointNameForRole(user.role)]);
+      },
+      error: (error) => {
+        this.alertService.error(error);
+        this.loadingBar.stopLoading();
+      },
+    });
+  }
+
+  get isLoading() {
+    return this.loadingBar.getLoading();
   }
 }

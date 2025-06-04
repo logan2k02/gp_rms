@@ -20,7 +20,8 @@ export class AlertService {
     if (typeof error === 'string') {
       message = error;
     } else {
-      message = `${error.title} - ${error.message}`;
+      if (error.title) message = `${error.title} - ${error.message}`;
+      else message = error.message;
     }
     this.openSnackBar(message, ['alert-error'], duration);
   }
