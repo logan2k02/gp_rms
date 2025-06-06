@@ -10,6 +10,8 @@ $primary-invert-color: map.get(my-theme.$primary-palette, 98);
     (
       active-indicator-color: $primary-invert-color,
       track-color: $primary-color,
+      track-height: 3px,
+      active-indicator-height: 3px,
     )
   );
 

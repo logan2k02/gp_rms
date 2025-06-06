@@ -15,26 +15,44 @@ import {
   withFetch,
   withInterceptors,
 } from '@angular/common/http';
-import { catchError, of } from 'rxjs';
+import { catchError, combineLatest, of } from 'rxjs';
 import { routes } from './app.routes';
 import { HttpInterceptor } from './core/inteceptors';
-import { AuthService, LoggerService } from './core/services';
+import {
+  CustomerAuthService,
+  LoggerService,
+  StaffAuthService,
+} from './core/services';
 import { AppTitleStrategy } from './core/strategies';
 
 const initAuth = () => {
-  const authService = inject(AuthService);
+  const staffAuthService = inject(StaffAuthService);
+  const customerAuthService = inject(CustomerAuthService);
   const logger = inject(LoggerService);
-  const isStaff = window.location.pathname.startsWith('/staff');
 
-  const action = isStaff
-    ? authService.refreshStaffAuth()
-    : authService.refreshCustomerAuth();
-  return action.pipe(
+  const staffAction = staffAuthService.refresh().pipe(
     catchError((err) => {
-      logger.error('AppInitializer', 'Error during auth initialization:', err);
+      logger.error(
+        'AppInitializer',
+        'Error during staff auth initialization:',
+        err
+      );
       return of(null);
     })
   );
+
+  const customerAction = customerAuthService.refresh().pipe(
+    catchError((err) => {
+      logger.error(
+        'AppInitializer',
+        'Error during customer auth initialization:',
+        err
+      );
+      return of(null);
+    })
+  );
+
+  return combineLatest([staffAction, customerAction]);
 };
 
 export const appConfig: ApplicationConfig = {

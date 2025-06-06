@@ -41,7 +41,7 @@ export class AlertService {
     const config: MatSnackBarConfig = {
       duration,
       horizontalPosition: 'right',
-      verticalPosition: 'top',
+      verticalPosition: 'bottom',
       panelClass,
       politeness: 'assertive',
     };

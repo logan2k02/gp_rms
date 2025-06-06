@@ -12,7 +12,7 @@ import {
   getNameForRole,
   StaffRole,
 } from '../../../core/enums';
-import { AlertService, AuthService } from '../../../core/services';
+import { AlertService, StaffAuthService } from '../../../core/services';
 
 interface NavLink {
   icon: string;
@@ -36,12 +36,12 @@ interface NavLink {
   styleUrl: './layout.component.scss',
 })
 export class LayoutComponent extends BaseComponent {
-  private authService = inject(AuthService);
+  private authService = inject(StaffAuthService);
   private router = inject(Router);
   private alertService = inject(AlertService);
 
   get user() {
-    return this.authService.getAuth().staff;
+    return this.authService.auth?.user;
   }
 
   get role() {
@@ -53,7 +53,7 @@ export class LayoutComponent extends BaseComponent {
   }
 
   logout() {
-    this.sub$.sink = this.authService.logout('staff').subscribe({
+    this.sub$.sink = this.authService.logout().subscribe({
       next: () => {
         this.router.navigate(['staff', 'login']);
       },
@@ -88,42 +88,43 @@ export class LayoutComponent extends BaseComponent {
 
     switch (this.user.role) {
       case StaffRole.Admin:
-        links.push({
-          icon: this.getAppIcon('food_menu'),
-          title: 'Menus',
-          link: roleEndPoint + '/menus',
-        });
-        links.push({
-          icon: this.getAppIcon('meal'),
-          title: 'Meals',
-          link: roleEndPoint + '/meals',
-        });
-        links.push({
-          icon: this.getAppIcon('location'),
-          title: 'Locations',
-          link: roleEndPoint + '/locations',
-        });
-        links.push({
-          icon: this.getAppIcon('table'),
-          title: 'Tables',
-          link: roleEndPoint + '/tables',
-        });
-        links.push({
-          icon: this.getAppIcon('staff'),
-          title: 'Waiters',
-          link: roleEndPoint + '/waiters',
-        });
-        links.push({
-          icon: this.getAppIcon('promos'),
-          title: 'Promos',
-          link: roleEndPoint + '/promos',
-        });
-        links.push({
-          icon: this.getAppIcon('reports'),
-          title: 'Sales',
-          link: roleEndPoint + '/sales',
-        });
-
+        links.push(
+          {
+            icon: this.getAppIcon('food_menu'),
+            title: 'Menus',
+            link: roleEndPoint + '/menus',
+          },
+          {
+            icon: this.getAppIcon('meal'),
+            title: 'Meals',
+            link: roleEndPoint + '/meals',
+          },
+          {
+            icon: this.getAppIcon('location'),
+            title: 'Locations',
+            link: roleEndPoint + '/locations',
+          },
+          {
+            icon: this.getAppIcon('table'),
+            title: 'Tables',
+            link: roleEndPoint + '/tables',
+          },
+          {
+            icon: this.getAppIcon('staff'),
+            title: 'Waiters',
+            link: roleEndPoint + '/waiters',
+          },
+          {
+            icon: this.getAppIcon('promos'),
+            title: 'Promos',
+            link: roleEndPoint + '/promos',
+          },
+          {
+            icon: this.getAppIcon('reports'),
+            title: 'Sales',
+            link: roleEndPoint + '/sales',
+          }
+        );
         break;
     }
 

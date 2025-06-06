@@ -1,13 +1,19 @@
 import { Routes } from '@angular/router';
 import { StaffRole } from './core/enums';
-import { authNotRequiredGuard, staffAuthRequiredGuard } from './core/guards';
+import {
+  staffAuthNotRequiredGuard,
+  staffAuthRequiredGuard,
+} from './core/guards';
 
 export const routes: Routes = [
   {
     path: '',
     loadComponent: () =>
-      import('./features/home/home.component').then((m) => m.HomeComponent),
+      import('./features/customer/home/home.component').then(
+        (m) => m.HomeComponent
+      ),
   },
+  // Staff Routes
   {
     path: 'staff',
     loadComponent: () =>
@@ -21,7 +27,7 @@ export const routes: Routes = [
           import('./features/staff/login/login.component').then(
             (m) => m.LoginComponent
           ),
-        canActivate: [authNotRequiredGuard()],
+        canActivate: [staffAuthNotRequiredGuard()],
       },
       {
         path: 'admin',
