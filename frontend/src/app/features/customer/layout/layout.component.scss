@@ -1,0 +1,42 @@
+@use "theme" as theme;
+@use "mixins" as *;
+@use "sass:map";
+
+header {
+  background-color: theme.$primary-color;
+  color: theme.$primary-invert-color;
+  position: sticky;
+  top: 0;
+  height: 56px;
+  z-index: 50;
+
+  .content {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 100%;
+    @include screen-width;
+    padding: 0 1rem;
+
+    @include screen("md") {
+      padding: 0 2rem;
+    }
+
+    nav {
+      display: flex;
+      gap: 1rem;
+      align-items: center;
+      font-size: 0.9rem;
+
+      @include screen("md") {
+        gap: 1.8rem;
+      }
+
+      a:not(.btn) {
+        &:hover {
+          text-decoration: underline;
+        }
+      }
+    }
+  }
+}

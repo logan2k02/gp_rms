@@ -135,3 +135,6 @@ $_rest: (
 
 $primary-palette: map.merge(map.get($_palettes, primary), $_rest);
 $tertiary-palette: map.merge(map.get($_palettes, tertiary), $_rest);
+
+$primary-color: map.get($primary-palette, 25);
+$primary-invert-color: map.get($primary-palette, 98);

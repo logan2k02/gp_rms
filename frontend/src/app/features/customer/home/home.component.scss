@@ -1,0 +1,60 @@
+@use "mixins" as *;
+@use "theme" as theme;
+@use "sass:map";
+
+.hero {
+  color: white;
+  min-height: 80vh;
+  background: linear-gradient(
+      0deg,
+      rgba(0, 0, 0, 0.7) 0%,
+      rgba(0, 0, 0, 0.5) 100%
+    ),
+    url("/home-hero.png") lightgray 50% / cover no-repeat;
+
+  @include screen("md") {
+    background: linear-gradient(
+        0deg,
+        rgba(0, 0, 0, 0.8) 0%,
+        rgba(0, 0, 0, 0.3) 100%
+      ),
+      url("/home-hero.png") lightgray 50% / cover no-repeat;
+  }
+
+  .container {
+    @include screen-width;
+    padding: 0 1rem;
+    display: flex;
+
+    @include screen("md") {
+      padding: 0 2rem;
+    }
+
+    .content {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      max-width: 40rem;
+      margin: auto 0;
+      padding-top: 10vh;
+      color: map.get(theme.$primary-palette, 99);
+      text-align: center;
+
+      @include screen("md") {
+        text-align: left;
+        align-items: start;
+      }
+
+      p {
+        margin-top: 1.5rem;
+      }
+
+      button {
+        margin-top: 2.5rem;
+        padding: 0.5rem 1rem;
+        font-size: 0.9rem;
+        font-weight: 500;
+      }
+    }
+  }
+}
