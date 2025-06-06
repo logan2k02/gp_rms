@@ -21,7 +21,7 @@ export class AuthController {
   constructor(private readonly authService: AuthService) {}
 
   private logout(res: Response, type: 'customer' | 'staffMember') {
-    res.clearCookie(`${type}refreshToken`, {
+    res.clearCookie(`${type}RefreshToken`, {
       httpOnly: true,
       secure: process.env.NODE_ENV === 'production',
       sameSite: 'strict',

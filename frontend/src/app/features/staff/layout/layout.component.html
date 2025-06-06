@@ -1,2 +1,64 @@
-<p>staff layout works!</p>
-<router-outlet></router-outlet>
+<mat-toolbar class="toolbar">
+  <button
+    (click)="snav.toggle()"
+    mat-icon-button
+    class="menu-btn"
+    aria-label="Open navigation menu"
+  >
+    <mat-icon>{{ getAppIcon("menu") }}</mat-icon>
+  </button>
+  <span>
+    @if(role){
+    {{ role }}
+    } @else{ Staff } Dashboard</span
+  >
+  <span class="spacer"></span>
+  <button
+    mat-icon-button
+    matButton
+    [matMenuTriggerFor]="menu"
+    class="account-btn"
+    aria-label="Manage Account"
+  >
+    <mat-icon>{{ getAppIcon("user") }}</mat-icon>
+  </button>
+  <mat-menu #menu="matMenu">
+    @if(user){
+    <button mat-menu-item>
+      <mat-icon>{{ getAppIcon("settings") }}</mat-icon>
+      Manage Account
+    </button>
+    <button mat-menu-item (click)="logout()">
+      <mat-icon>{{ getAppIcon("logout") }}</mat-icon>
+      Logout
+    </button>
+    }@else {
+    <button mat-menu-item (click)="login()">
+      <mat-icon>{{ getAppIcon("login") }}</mat-icon>
+      Login
+    </button>
+    }
+  </mat-menu>
+</mat-toolbar>
+
+<mat-sidenav-container>
+  <mat-sidenav #snav mode="over" fixedInViewport fixedTopGap="56">
+    <mat-nav-list class="nav-list">
+      @for (navLink of navLinks; track $index) {
+      <a
+        (click)="snav.close()"
+        [routerLink]="navLink.link"
+        routerLinkActive="active"
+        [routerLinkActiveOptions]="{ exact: navLink.matchExactly ?? false }"
+        mat-list-item
+      >
+        <mat-icon matListItemIcon>{{ navLink.icon }}</mat-icon>
+        {{ navLink.title }}
+      </a>
+      }
+    </mat-nav-list>
+  </mat-sidenav>
+  <mat-sidenav-content>
+    <main><router-outlet /></main>
+  </mat-sidenav-content>
+</mat-sidenav-container>

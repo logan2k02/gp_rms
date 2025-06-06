@@ -1,6 +1,6 @@
 import { Routes } from '@angular/router';
 import { StaffRole } from './core/enums';
-import { staffAuthRequiredGuard } from './core/guards';
+import { authNotRequiredGuard, staffAuthRequiredGuard } from './core/guards';
 
 export const routes: Routes = [
   {
@@ -21,7 +21,7 @@ export const routes: Routes = [
           import('./features/staff/login/login.component').then(
             (m) => m.LoginComponent
           ),
-        // canActivate: [authNotRequiredGuard()],
+        canActivate: [authNotRequiredGuard()],
       },
       {
         path: 'admin',
