@@ -1,28 +1,24 @@
 import { inject } from '@angular/core';
 import { CanActivateFn, Router } from '@angular/router';
 import { getEndpointNameForRole } from '../enums';
-import { AlertService, AuthService, LoggerService } from '../services';
+import { AlertService, LoggerService, StaffAuthService } from '../services';
 
-export const authNotRequiredGuard: () => CanActivateFn = () => () => {
-  const authService = inject(AuthService);
+export const staffAuthNotRequiredGuard: () => CanActivateFn = () => () => {
+  const authService = inject(StaffAuthService);
   const logger = inject(LoggerService);
   const router = inject(Router);
   const alertService = inject(AlertService);
 
-  const auth = authService.getAuth();
-
-  if (auth.customer || auth.staff) {
+  if (authService.auth) {
     logger.warn(
       'authNotRequiredGuard',
       'User is already authenticated, redirecting...'
     );
     alertService.error('You are already logged in.');
 
-    if (auth.staff) {
-      router.navigateByUrl('/staff/' + getEndpointNameForRole(auth.staff.role));
-    } else {
-      router.navigateByUrl('/');
-    }
+    router.navigateByUrl(
+      '/staff/' + getEndpointNameForRole(authService.auth.user.role)
+    );
     return false;
   }
 

@@ -16,8 +16,8 @@ import { BaseComponent } from '../../../core/base.component';
 import { getEndpointNameForRole } from '../../../core/enums';
 import {
   AlertService,
-  AuthService,
   GlobalLoadingBarService,
+  StaffAuthService,
 } from '../../../core/services';
 @Component({
   selector: 'app-login',
@@ -36,7 +36,7 @@ import {
 export class LoginComponent extends BaseComponent {
   private alertService = inject(AlertService);
   private loadingBar = inject(GlobalLoadingBarService);
-  private authService = inject(AuthService);
+  private authService = inject(StaffAuthService);
   private router = inject(Router);
 
   form: FormGroup = new FormGroup({
@@ -73,8 +73,8 @@ export class LoginComponent extends BaseComponent {
     }
 
     const { username, password } = this.form.value;
-    this.sub$.sink = this.authService.staffLogin(username, password).subscribe({
-      next: (user) => {
+    this.sub$.sink = this.authService.login(username, password).subscribe({
+      next: ({ user }) => {
         this.alertService.success(`Welcome ${user.name.split(' ')[0]}!`);
         this.loadingBar.stopLoading();
         this.router.navigate(['/staff/' + getEndpointNameForRole(user.role)]);

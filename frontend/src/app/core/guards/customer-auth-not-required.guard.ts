@@ -2,20 +2,20 @@ import { inject } from '@angular/core';
 import { CanActivateFn, Router } from '@angular/router';
 import { AlertService, CustomerAuthService, LoggerService } from '../services';
 
-export const customerAuthRequiredGuard: () => CanActivateFn = () => () => {
+export const customerAuthNotRequiredGuard: () => CanActivateFn = () => () => {
   const authService = inject(CustomerAuthService);
   const logger = inject(LoggerService);
   const router = inject(Router);
   const alertService = inject(AlertService);
 
-  if (!authService.auth) {
+  if (authService.auth) {
     logger.warn(
-      'authRequiredGuard',
-      'Customer is not authenticated, redirecting to login page'
+      'authNotRequiredGuard',
+      'User is already authenticated, redirecting...'
     );
-    alertService.error('You must be logged in to access this page.');
+    alertService.error('You are already logged in.');
 
-    router.navigateByUrl('/login');
+    router.navigateByUrl('/');
     return false;
   }
 
