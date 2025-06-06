@@ -12,6 +12,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { Router } from '@angular/router';
+import { BaseComponent } from '../../../core/base.component';
 import { getEndpointNameForRole } from '../../../core/enums';
 import {
   AlertService,
@@ -32,27 +33,24 @@ import {
   templateUrl: './login.component.html',
   styleUrl: './login.component.scss',
 })
-export class LoginComponent {
+export class LoginComponent extends BaseComponent {
   private alertService = inject(AlertService);
   private loadingBar = inject(GlobalLoadingBarService);
   private authService = inject(AuthService);
   private router = inject(Router);
 
-  form: FormGroup;
-  passwordVisible = signal(false);
+  form: FormGroup = new FormGroup({
+    username: new FormControl<string>('', [
+      Validators.required,
+      Validators.minLength(4),
+    ]),
+    password: new FormControl<string>('', [
+      Validators.required,
+      Validators.minLength(6),
+    ]),
+  });
 
-  constructor() {
-    this.form = new FormGroup({
-      username: new FormControl<string>('', [
-        Validators.required,
-        Validators.minLength(4),
-      ]),
-      password: new FormControl<string>('', [
-        Validators.required,
-        Validators.minLength(6),
-      ]),
-    });
-  }
+  passwordVisible = signal(false);
 
   errorMessage(controlName: string): string | null {
     if (this.form.get(controlName)?.hasError('required')) {
@@ -75,7 +73,7 @@ export class LoginComponent {
     }
 
     const { username, password } = this.form.value;
-    this.authService.staffLogin(username, password).subscribe({
+    this.sub$.sink = this.authService.staffLogin(username, password).subscribe({
       next: (user) => {
         this.alertService.success(`Welcome ${user.name.split(' ')[0]}!`);
         this.loadingBar.stopLoading();

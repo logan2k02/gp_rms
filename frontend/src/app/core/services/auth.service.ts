@@ -139,18 +139,20 @@ export class AuthService {
     });
   }
 
-  logout() {
+  logout(userType: 'customer' | 'staff') {
     return new Observable<void>((observer) => {
-      const subscription = this.http.post<void>(`/auth/signout`, {}).subscribe({
-        next: () => {
-          this.setAuth(DEFAULT_AUTH);
-          observer.next();
-          observer.complete();
-        },
-        error: (error) => {
-          observer.error(error);
-        },
-      });
+      const subscription = this.http
+        .post<void>(`/auth/${userType}/logout`, {})
+        .subscribe({
+          next: () => {
+            this.setAuth(DEFAULT_AUTH);
+            observer.next();
+            observer.complete();
+          },
+          error: (error) => {
+            observer.error(error);
+          },
+        });
       return () => {
         subscription.unsubscribe();
       };

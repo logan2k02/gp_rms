@@ -14,7 +14,7 @@ body {
 html {
   @include mat.theme(
     (
-      color: mat.$rose-palette,
+      color: mat.$spring-green-palette,
       typography: Inter,
       density: 0,
     )
@@ -22,3 +22,4 @@ html {
 }
 
 @import url("./components.scss");
+@import url("./overrides.scss");

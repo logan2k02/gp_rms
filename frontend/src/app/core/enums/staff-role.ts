@@ -17,3 +17,16 @@ export const getEndpointNameForRole = (role: StaffRole): string => {
       return 'kitchen-manager';
   }
 };
+
+export const getNameForRole = (role: StaffRole): string => {
+  switch (role) {
+    case StaffRole.Admin:
+      return 'Admin';
+    case StaffRole.Cashier:
+      return 'Cashier';
+    case StaffRole.Waiter:
+      return 'Waiter';
+    case StaffRole.KitchenManager:
+      return 'Kitchen Manager';
+  }
+};
