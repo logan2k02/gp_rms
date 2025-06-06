@@ -1,4 +1,6 @@
 @use "@angular/material" as mat;
+@use "../../../../styles/theme" as my-theme;
+@use "sass:map";
 
 .toolbar {
   position: sticky;
@@ -11,6 +13,10 @@
 
   .spacer {
     flex: 1 1 auto;
+  }
+
+  button {
+    color: inherit;
   }
 }
 
@@ -25,4 +31,8 @@ main {
   background-color: white;
   padding: 1rem;
   min-height: calc(100vh - 56px);
+}
+
+.nav-item.active {
+  background-color: map.get(my-theme.$primary-palette, 30);
 }

@@ -7,7 +7,7 @@
   >
     <mat-icon>{{ getAppIcon("menu") }}</mat-icon>
   </button>
-  <span>
+  <span class="title">
     @if(role){
     {{ role }}
     } @else{ Staff } Dashboard</span
@@ -42,7 +42,13 @@
 </mat-toolbar>
 
 <mat-sidenav-container>
-  <mat-sidenav #snav mode="over" fixedInViewport fixedTopGap="56">
+  <mat-sidenav
+    #snav
+    mode="over"
+    fixedInViewport
+    fixedTopGap="56"
+    class="sidenav"
+  >
     <mat-nav-list class="nav-list">
       @for (navLink of navLinks; track $index) {
       <a
@@ -51,6 +57,7 @@
         routerLinkActive="active"
         [routerLinkActiveOptions]="{ exact: navLink.matchExactly ?? false }"
         mat-list-item
+        class="nav-item"
       >
         <mat-icon matListItemIcon>{{ navLink.icon }}</mat-icon>
         {{ navLink.title }}
