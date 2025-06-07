@@ -3,7 +3,7 @@
 @use "components";
 @use "mat_overrides";
 @use "theme";
-@use "preflight" as *;
+@use "customer";
 
 * {
   margin: 0;
@@ -24,29 +24,11 @@ html {
       density: 0,
     )
   );
-}
-
-.customer {
-  @include preflight;
-
-  h1,
-  h2,
-  h3,
-  h4 {
-    @include serif-font;
+  & {
+    font-size: 15px;
   }
 
-  h1 {
-    font-size: 2.5rem;
-    font-weight: 500;
-
-    @include screen("md") {
-      font-size: 3.5rem;
-    }
-  }
-
-  p.description {
-    line-height: 1.5rem;
-    font-weight: 300;
+  @include screen("md") {
+    font-size: 16px;
   }
 }

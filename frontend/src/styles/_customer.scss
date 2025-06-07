@@ -1,0 +1,91 @@
+@use "preflight" as *;
+@use "mixins" as *;
+@use "theme" as theme;
+@use "sass:map";
+@use "sass:color";
+
+.customer {
+  @include preflight;
+
+  h1,
+  h2,
+  h3,
+  h4 {
+    @include serif-font;
+  }
+
+  h1 {
+    font-size: 2.5rem;
+    font-weight: 500;
+
+    @include screen("md") {
+      font-size: 3.5rem;
+    }
+  }
+
+  h2 {
+    font-size: 2rem;
+    font-weight: 500;
+
+    @include screen("md") {
+      font-size: 2.5rem;
+    }
+  }
+
+  h3 {
+    font-size: 1.3rem;
+    font-weight: 500;
+
+    @include screen("md") {
+      font-size: 1.8rem;
+    }
+  }
+
+  h4 {
+    font-size: 1.3rem;
+    font-weight: 500;
+
+    @include screen("md") {
+      font-size: 1.4rem;
+    }
+  }
+
+  h5 {
+    font-size: 0.9rem;
+    font-weight: 300;
+    text-transform: uppercase;
+  }
+
+  p.description {
+    line-height: 1.5rem;
+    font-weight: 300;
+  }
+
+  .btn {
+    @include button(
+      map.get(theme.$primary-palette, 20),
+      map.get(theme.$primary-palette, 99)
+    );
+
+    &.light {
+      @include button(
+        map.get(theme.$primary-palette, 99),
+        map.get(theme.$primary-palette, 20)
+      );
+    }
+
+    &.green {
+      @include button(
+        map.get(theme.$primary-palette, 95),
+        map.get(theme.$primary-palette, 25)
+      );
+    }
+  }
+}
+
+.logo {
+  font-weight: 600;
+  @include serif-font;
+  font-size: 1.8rem;
+  letter-spacing: -0.1em;
+}

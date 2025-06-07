@@ -52,6 +52,7 @@ export const AppIcons = {
   reports: 'assessment',
   food_menu: 'menu_book',
   meal: 'lunch_dining',
+  close: 'close',
 };
 
 export type AppIconName = keyof typeof AppIcons;
