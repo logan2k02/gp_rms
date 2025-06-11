@@ -11,10 +11,11 @@
 7. Backend is the Nest JS project, frontend is the Angular project. Root contains the `docker-compose.yml`. We use docker only for the database services: postgreSQL database and pgAdmin4(a phpmyadmin like tool for postgreSQL).
 8. Open a terminal in `root` and run `docker-compose up -d` as a command.(Terminal profile: **Git Bash** is preferred) This commands starts the mentioned database services. You can check if the services are running via the Docker Desktop app in your pc.
 9. Visit `http://localhost:5050`, this is the pgAdmin4 web interface. Sign-in credentials -> `Email: dbadmin@gprms.com, PW: 123456`.
-10. Open terminal in `frontend` folder and run `ng serve`. This starts the Angular development server. Which probably is available at http://localhost:4200.
-11. Open another terminal in `backend` folder and run `npm run start:dev`. This will spin up Nest JS development server. It's available at http://localhost:3000(No reason to visit this via browser since it's a backend dev server, just given as a detail)
-12. Since we use Prisma as our ORM tool, it provides us a web interface(Prisma Studio) to work with the database. To run it, open a terminal inside `backend` folder and run `npx prisma studio`.
-13. Setup is done.
+10. Visit to `frontend` and `backend` folders and run `npm install` in each to install dependancies.
+11. Open terminal in `frontend` folder and run `ng serve`. This starts the Angular development server. Which probably is available at http://localhost:4200.
+12. Open another terminal in `backend` folder and run `npm run start:dev`. This will spin up Nest JS development server. It's available at http://localhost:3000(No reason to visit this via browser since it's a backend dev server, just given as a detail)
+13. Since we use Prisma as our ORM tool, it provides us a web interface(Prisma Studio) to work with the database. To run it, open a terminal inside `backend` folder and run `npx prisma studio`.
+14. Setup is done.
 
 # Notes:
 
