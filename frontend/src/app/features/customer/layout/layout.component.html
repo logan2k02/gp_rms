@@ -13,35 +13,33 @@
           </mat-icon>
         </button>
         <nav class="hide-on-mobile">
-          <a [routerLink]="[]" fragment="offers">Offers</a>
-          <a [routerLink]="[]" fragment="about">Our Story</a>
-          <a [routerLink]="[]" fragment="contact">Contact Us</a>
+          <a routerLink="/" fragment="offers">Offers</a>
+          <a routerLink="/" fragment="about">Our Story</a>
+          <a routerLink="/" fragment="contact">Contact Us</a>
         </nav>
       </nav>
       <nav>
         <a routerLink="/login" class="hide-on-mobile">Sign in</a>
-        <a routerLink="/menu" class="btn light">Our Menu</a>
+        <a routerLink="/menu" mat-raised-button class="btn">Our Menu</a>
       </nav>
     </div>
   </header>
   <div class="mobile-menu" [class.open]="menuOpen()">
-    <a [routerLink]="[]" fragment="offers">Offers</a>
-    <a [routerLink]="[]" fragment="about">Our Story</a>
-    <a [routerLink]="[]" fragment="contact">Contact Us</a>
+    <a routerLink="/" fragment="offers">Offers</a>
+    <a routerLink="/" fragment="about">Our Story</a>
+    <a routerLink="/" fragment="contact">Contact Us</a>
     <a routerLink="/login">Sign in</a>
   </div>
-  <main>
-    <ng-content></ng-content>
-  </main>
+  <main><router-outlet /></main>
   <footer>
     <div class="content">
       <span class="logo">Sevonra</span>
       <nav class="">
-        <a [routerLink]="[]" fragment="offers">Offers</a>
-        <a [routerLink]="[]" fragment="about">Our Story</a>
-        <a [routerLink]="[]" fragment="contact">Contact Us</a>
+        <a routerLink="/" fragment="offers">Offers</a>
+        <a routerLink="/" fragment="about">Our Story</a>
+        <a routerLink="/" fragment="contact">Contact Us</a>
         <a routerLink="/info" fragment="loyalty-points">Loyalty Points</a>
-        <a routerLink="/info" fragment="reservations">Reservation Info</a>
+        <a routerLink="/info" fragment="reservation-info">Reservation Info</a>
       </nav>
       <div class="bottom">
         <nav class="">

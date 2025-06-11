@@ -61,26 +61,26 @@
     font-weight: 300;
   }
 
-  .btn {
-    @include button(
-      map.get(theme.$primary-palette, 20),
-      map.get(theme.$primary-palette, 99)
-    );
+  // .btn {
+  //   @include button(
+  //     map.get(theme.$primary-palette, 20),
+  //     map.get(theme.$primary-palette, 99)
+  //   );
 
-    &.light {
-      @include button(
-        map.get(theme.$primary-palette, 99),
-        map.get(theme.$primary-palette, 20)
-      );
-    }
+  //   &.light {
+  //     @include button(
+  //       map.get(theme.$primary-palette, 99),
+  //       map.get(theme.$primary-palette, 20)
+  //     );
+  //   }
 
-    &.green {
-      @include button(
-        map.get(theme.$primary-palette, 95),
-        map.get(theme.$primary-palette, 25)
-      );
-    }
-  }
+  //   &.green {
+  //     @include button(
+  //       map.get(theme.$primary-palette, 95),
+  //       map.get(theme.$primary-palette, 25)
+  //     );
+  //   }
+  // }
 }
 
 .logo {
@@ -88,4 +88,5 @@
   @include serif-font;
   font-size: 1.8rem;
   letter-spacing: -0.1em;
+  text-transform: uppercase;
 }

@@ -1,0 +1,25 @@
+<section>
+  <form action="">
+    <mat-card>
+      <mat-card-header>
+        <mat-card-title>Sign in</mat-card-title>
+        <mat-card-subtitle>
+          Continue with your phone number. If you don't have an account, one
+          will be created automatically for you.</mat-card-subtitle
+        >
+      </mat-card-header>
+      <mat-card-content>
+        <mat-form-field floatLabel="always" appearance="outline">
+          <mat-label>Enter Phone number</mat-label>
+          <input type="tel" matInput appAutofocus />
+          <mat-icon matIconPrefix>{{ getAppIcon("phone") }}</mat-icon>
+        </mat-form-field>
+      </mat-card-content>
+      <mat-card-actions>
+        <button mat-flat-button color="primary" class="btn" type="submit">
+          Continue
+        </button>
+      </mat-card-actions>
+    </mat-card>
+  </form>
+</section>

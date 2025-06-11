@@ -6,12 +6,36 @@ import {
 } from './core/guards';
 
 export const routes: Routes = [
+  // Customer Routes
   {
     path: '',
     loadComponent: () =>
-      import('./features/customer/home/home.component').then(
-        (m) => m.HomeComponent
+      import('./features/customer/layout/layout.component').then(
+        (m) => m.LayoutComponent
       ),
+    children: [
+      {
+        path: '',
+        loadComponent: () =>
+          import('./features/customer/home/home.component').then(
+            (m) => m.HomeComponent
+          ),
+      },
+      {
+        path: 'info',
+        loadComponent: () =>
+          import('./features/customer/info/info.component').then(
+            (m) => m.InfoComponent
+          ),
+      },
+      {
+        path: 'login',
+        loadComponent: () =>
+          import('./features/customer/login/login.component').then(
+            (m) => m.LoginComponent
+          ),
+      },
+    ],
   },
   // Staff Routes
   {

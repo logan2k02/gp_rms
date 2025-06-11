@@ -53,6 +53,7 @@ export const AppIcons = {
   food_menu: 'menu_book',
   meal: 'lunch_dining',
   close: 'close',
+  phone: 'phone',
 };
 
 export type AppIconName = keyof typeof AppIcons;

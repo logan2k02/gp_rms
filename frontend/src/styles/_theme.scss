@@ -9,11 +9,16 @@ $_palettes: (
   primary: (
     0: #000000,
     10: #002113,
-    20: #003823,
-    25: #09442d,
-    30: #195038,
-    35: #275c43,
-    40: #33684e,
+    20: #09442d,
+    // previously 25
+    25: #195038,
+    // previously 30
+    30: #275c43,
+    // previously 35
+    35: #33684e,
+    // previously 40
+    40: #003823,
+    // 👈 primary 20 moved here
     50: #4d8266,
     60: #669c7f,
     70: #80b798,
@@ -136,5 +141,5 @@ $_rest: (
 $primary-palette: map.merge(map.get($_palettes, primary), $_rest);
 $tertiary-palette: map.merge(map.get($_palettes, tertiary), $_rest);
 
-$primary-color: map.get($primary-palette, 25);
-$primary-invert-color: map.get($primary-palette, 98);
+$primary-color: map.get($primary-palette, 40);
+$primary-invert-color: map.get($primary-palette, 99);

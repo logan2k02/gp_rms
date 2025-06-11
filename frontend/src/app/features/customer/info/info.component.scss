@@ -1,0 +1,10 @@
+@use "mixins" as *;
+
+.container {
+  @include screen-width;
+  padding: 5rem 1rem;
+
+  @include screen("md") {
+    padding: 5rem 2rem;
+  }
+}
