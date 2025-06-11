@@ -9,14 +9,14 @@
           "configurations": {
             "development": {
               "extractLicenses": false,
-              "optimization": false,
-              "sourceMap": true,
               "fileReplacements": [
                 {
                   "replace": "src/environments/environment.ts",
                   "with": "src/environments/environment.development.ts"
                 }
-              ]
+              ],
+              "optimization": false,
+              "sourceMap": true
             },
             "production": {
               "budgets": [
@@ -50,6 +50,11 @@
               "zone.js"
             ],
             "scripts": [],
+            "stylePreprocessorOptions": {
+              "includePaths": [
+                "src/styles"
+              ]
+            },
             "styles": [
               "@angular/material/prebuilt-themes/azure-blue.css",
               "src/styles/index.scss"
@@ -106,5 +111,8 @@
       "sourceRoot": "src"
     }
   },
-  "version": 1
+  "version": 1,
+  "cli": {
+    "analytics": "f3c405a0-3347-4ae9-87e4-f0416e811cb4"
+  }
 }

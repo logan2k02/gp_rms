@@ -1,0 +1,56 @@
+<div class="customer">
+  <header>
+    <div class="content">
+      <nav class="">
+        <a routerLink="/"> <span class="logo">Thon</span> </a>
+        <button mat-icon-button class="mobile-menu-btn" (click)="toggleMenu()">
+          <mat-icon>
+            @if (menuOpen()) {
+            {{ getAppIcon("close") }}
+            }@else {
+            {{ getAppIcon("menu") }}
+            }
+          </mat-icon>
+        </button>
+        <nav class="hide-on-mobile">
+          <a routerLink="/" fragment="offers">Offers</a>
+          <a routerLink="/" fragment="about">Our Story</a>
+          <a routerLink="/" fragment="contact">Contact Us</a>
+        </nav>
+      </nav>
+      <nav>
+        <a routerLink="/login" class="hide-on-mobile">Sign in</a>
+        <a routerLink="/menu" mat-raised-button class="btn">Our Menu</a>
+      </nav>
+    </div>
+  </header>
+  <div class="mobile-menu" [class.open]="menuOpen()">
+    <a routerLink="/" fragment="offers">Offers</a>
+    <a routerLink="/" fragment="about">Our Story</a>
+    <a routerLink="/" fragment="contact">Contact Us</a>
+    <a routerLink="/login">Sign in</a>
+  </div>
+  <main><router-outlet /></main>
+  <footer>
+    <div class="content">
+      <span class="logo">Thon</span>
+      <nav class="">
+        <a routerLink="/" fragment="offers">Offers</a>
+        <a routerLink="/" fragment="about">Our Story</a>
+        <a routerLink="/" fragment="contact">Contact Us</a>
+        <a routerLink="/info" fragment="loyalty-points">Loyalty Points</a>
+        <a routerLink="/info" fragment="reservation-info">Reservation Info</a>
+      </nav>
+      <div class="bottom">
+        <nav class="">
+          <a routerLink="/info" fragment="privacy-policy">Privacy Policy</a>
+          <a routerLink="/info" fragment="terms-of-service">Terms of Service</a>
+        </nav>
+        <p class="small">
+          © 2025 Resto Ease. All rights reserved. Developed by Group 8 of UCSC
+          2021/2022 Batch.
+        </p>
+      </div>
+    </div>
+  </footer>
+</div>

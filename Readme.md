@@ -37,10 +37,6 @@
 
 There may be others service which will be added laters.
 
-## `ml-server`
-
-We'll later implement ML model(if needed). A python server(ml-server) will be needed to interact with the model.
-
 ---
 
 ---

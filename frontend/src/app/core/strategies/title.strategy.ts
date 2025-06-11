@@ -2,7 +2,7 @@ import { inject, Injectable } from '@angular/core';
 import { Title } from '@angular/platform-browser';
 import { RouterStateSnapshot, TitleStrategy } from '@angular/router';
 
-const COMMON_TITLE = 'Banana Restuarant Management System by Resto Ease';
+const COMMON_TITLE = 'Thon Restuarant';
 
 @Injectable({ providedIn: 'root' })
 export class AppTitleStrategy extends TitleStrategy {

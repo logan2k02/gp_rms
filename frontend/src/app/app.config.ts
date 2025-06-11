@@ -32,7 +32,7 @@ const initAuth = () => {
 
   const staffAction = staffAuthService.refresh().pipe(
     catchError((err) => {
-      logger.error(
+      logger.warn(
         'AppInitializer',
         'Error during staff auth initialization:',
         err
@@ -43,7 +43,7 @@ const initAuth = () => {
 
   const customerAction = customerAuthService.refresh().pipe(
     catchError((err) => {
-      logger.error(
+      logger.warn(
         'AppInitializer',
         'Error during customer auth initialization:',
         err

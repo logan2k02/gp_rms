@@ -1,5 +1,5 @@
 @use "@angular/material" as mat;
-@use "../../../../styles/theme" as my-theme;
+@use "theme" as theme;
 @use "sass:map";
 
 .toolbar {
@@ -34,5 +34,5 @@ main {
 }
 
 .nav-item.active {
-  background-color: map.get(my-theme.$primary-palette, 30);
+  background-color: map.get(theme.$primary-palette, 30);
 }

@@ -1,5 +1,9 @@
 @use "@angular/material" as mat;
-@use "./_theme" as my-theme;
+@use "mixins" as *;
+@use "components";
+@use "mat_overrides";
+@use "theme";
+@use "customer";
 
 * {
   margin: 0;
@@ -15,12 +19,16 @@ body {
 html {
   @include mat.theme(
     (
-      color: my-theme.$primary-palette,
+      color: theme.$primary-palette,
       typography: Inter,
       density: 0,
     )
   );
-}
+  & {
+    font-size: 15px;
+  }
 
-@import url("./components.scss");
-@import url("./mat_overrides.scss");
+  @include screen("md") {
+    font-size: 16px;
+  }
+}
