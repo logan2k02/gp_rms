@@ -1,7 +1,6 @@
 import {
   Body,
   Controller,
-  ForbiddenException,
   HttpCode,
   HttpStatus,
   Ip,
@@ -34,7 +33,7 @@ export class AuthController {
     userType: 'customer' | 'staffMember',
   ) {
     if (!auth.refreshToken) {
-      throw new ForbiddenException('Refresh token not found in request');
+      return null;
     }
 
     try {

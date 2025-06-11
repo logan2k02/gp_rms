@@ -1,0 +1,52 @@
+@use "@angular/material" as mat;
+@use "theme" as theme;
+
+:root {
+  @include mat.progress-bar-overrides(
+    (
+      active-indicator-color: theme.$primary-invert-color,
+      track-color: theme.$primary-color,
+      track-height: 3px,
+      active-indicator-height: 3px,
+    )
+  );
+
+  @include mat.toolbar-overrides(
+    (
+      container-background-color: theme.$primary-color,
+      container-text-color: theme.$primary-invert-color,
+      standard-height: 56px,
+      title-text-size: 1rem,
+      title-text-weight: 500,
+    )
+  );
+
+  @include mat.sidenav-overrides(
+    (
+      container-background-color: theme.$primary-color,
+      container-text-color: theme.$primary-invert-color,
+    )
+  );
+
+  @include mat.list-overrides(
+    (
+      list-item-leading-icon-color: theme.$primary-invert-color,
+      list-item-hover-leading-icon-color: theme.$primary-invert-color,
+    )
+  );
+
+  .sidenav {
+    @include mat.list-overrides(
+      (
+        list-item-hover-state-layer-color: theme.$primary-invert-color,
+        list-item-hover-state-layer-opacity: 0.05,
+        list-item-focus-state-layer-color: theme.$primary-invert-color,
+        list-item-focus-state-layer-opacity: 0.05,
+        list-item-label-text-color: theme.$primary-invert-color,
+        list-item-hover-label-text-color: theme.$primary-invert-color,
+        list-item-focus-label-text-color: theme.$primary-invert-color,
+        list-item-selected-container-color: theme.$primary-color,
+      )
+    );
+  }
+}

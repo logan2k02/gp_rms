@@ -1,0 +1,39 @@
+@use "mixins" as *;
+
+section {
+  @include screen-width;
+  padding: 5rem 1rem;
+
+  @include screen("md") {
+    padding: 5rem 2rem;
+  }
+
+  form {
+    display: flex;
+    flex-direction: column;
+    max-width: 20rem;
+    margin: 0 auto;
+
+    mat-card-title {
+      @include serif-font;
+      font-size: 2rem;
+      padding-bottom: 1rem;
+    }
+
+    mat-card-subtitle {
+      font-size: 0.9rem;
+      line-height: 1.2;
+      font-weight: 300;
+    }
+
+    mat-card-content {
+      padding: 2rem 1rem 0 1rem;
+      display: flex;
+      flex-direction: column;
+    }
+
+    button {
+      width: 100%;
+    }
+  }
+}

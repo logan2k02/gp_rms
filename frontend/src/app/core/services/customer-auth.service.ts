@@ -8,24 +8,7 @@ import { AuthState, BaseAuthService } from './base-auth.service';
 })
 export class CustomerAuthService extends BaseAuthService<Customer> {
   refresh() {
-    return new Observable<AuthState<Customer>>((observer) => {
-      const subscription = this.http
-        .post<AuthState<Customer>>(`/auth/customer/refresh`, {})
-        .subscribe({
-          next: (res) => {
-            this.auth = res;
-            observer.next(res);
-            observer.complete();
-          },
-          error: (error) => {
-            this.auth = null;
-            observer.error(error);
-          },
-        });
-      return () => {
-        subscription.unsubscribe();
-      };
-    });
+    return this._refresh('customer');
   }
 
   login(phone: string) {

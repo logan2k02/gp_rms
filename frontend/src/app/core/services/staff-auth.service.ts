@@ -8,24 +8,7 @@ import { AuthState, BaseAuthService } from './base-auth.service';
 })
 export class StaffAuthService extends BaseAuthService<StaffUser> {
   refresh() {
-    return new Observable<AuthState<StaffUser>>((observer) => {
-      const subscription = this.http
-        .post<AuthState<StaffUser>>(`/auth/staff/refresh`, {})
-        .subscribe({
-          next: (res) => {
-            this.auth = res;
-            observer.next(res);
-            observer.complete();
-          },
-          error: (error) => {
-            this.auth = null;
-            observer.error(error);
-          },
-        });
-      return () => {
-        subscription.unsubscribe();
-      };
-    });
+    return this._refresh('staff');
   }
 
   login(username: string, password: string) {

@@ -1,1 +1,132 @@
-<p>home works!</p>
+<section id="hero">
+  <div class="bg">
+    <swiper-container
+      class="slider"
+      slides-per-view="1"
+      speed="500"
+      loop="true"
+      autoplay="true"
+    >
+      @for (sliderImage of sliderImages; track $index) {
+      <swiper-slide>
+        <img [ngSrc]="sliderImage" fill alt="Hero Banner" priority />
+      </swiper-slide>
+      }
+    </swiper-container>
+  </div>
+
+  <div class="container">
+    <div class="content">
+      <h1>Experience Dining Like Never Before</h1>
+      <p class="description">
+        Indulge in a culinary journey that transcends the ordinary. Reserve your
+        table today and immerse yourself in a world of exquisite flavors and
+        unparalleled comfort.
+      </p>
+      <button class="btn" mat-flat-button>Reserve a Table</button>
+    </div>
+  </div>
+</section>
+
+<section id="offers">
+  <div class="heading centered">
+    <h5>Offers</h5>
+    <h2>Indulge in Our Exclusive Seasonal Promotions</h2>
+    <p class="description">
+      Experience the luxury of fine dining with our exclusive offers. Treat
+      yourself to gourmet delights and special perks designed just for you.
+    </p>
+  </div>
+  <div class="items">
+    <app-offer-card />
+    <app-offer-card />
+    <app-offer-card />
+    <app-offer-card />
+    <app-offer-card />
+    <app-offer-card />
+  </div>
+</section>
+<section id="about">
+  <div class="heading">
+    <h5>Our Story</h5>
+    <h2>About Us</h2>
+    <p class="description">
+      Lorem ipsum, dolor sit amet consectetur adipisicing elit. Dignissimos, vel
+      iste a reiciendis repellat fuga dolore ad unde amet, consectetur commodi!
+      Nostrum fuga recusandae alias itaque exercitationem ullam voluptatem
+      laudantium!
+    </p>
+  </div>
+  <div class="content">
+    <img
+      class="banner"
+      ngSrc="/images/home/about-banner.jpg"
+      width="1920"
+      height="1080"
+      alt="About Banner"
+      priority
+    />
+    <div class="description">
+      <div class="item">
+        <h4>1977 October 15</h4>
+        <p>
+          Lorem ipsum dolor sit amet consectetur adipisicing elit. Alias
+          perferendis deserunt rem sit laboriosam. Molestiae, accusamus sapiente
+          aut, asperiores voluptatem debitis blanditiis sed incidunt nisi quasi
+          magni vero assumenda facilis.
+        </p>
+      </div>
+      <div class="item">
+        <h4>1977 October 15</h4>
+        <p>
+          Lorem ipsum dolor sit amet consectetur adipisicing elit. Alias
+          perferendis deserunt rem sit laboriosam. Molestiae, accusamus sapiente
+          aut, asperiores voluptatem debitis blanditiis sed incidunt nisi quasi
+          magni vero assumenda facilis.
+        </p>
+      </div>
+      <div class="item">
+        <h4>1977 October 15</h4>
+        <p>
+          Lorem ipsum dolor sit amet consectetur adipisicing elit. Alias
+          perferendis deserunt rem sit laboriosam. Molestiae, accusamus sapiente
+          aut, asperiores voluptatem debitis blanditiis sed incidunt nisi quasi
+          magni vero assumenda facilis.
+        </p>
+      </div>
+      <div class="item">
+        <h4>1977 October 15</h4>
+        <p>
+          Lorem ipsum dolor sit amet consectetur adipisicing elit. Alias
+          perferendis deserunt rem sit laboriosam. Molestiae, accusamus sapiente
+          aut, asperiores voluptatem debitis blanditiis sed incidunt nisi quasi
+          magni vero assumenda facilis.
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+<section id="contact">
+  <div class="heading centered">
+    <h5>Contact Us</h5>
+    <h2>Get in touch with us</h2>
+    <p class="description">
+      Experience the luxury of fine dining with our exclusive offers. Treat
+      yourself to gourmet delights and special perks designed just for you.
+    </p>
+  </div>
+  <div class="items">
+    <div class="item">
+      <h4>Visit Us</h4>
+      <p class="description">asdsda</p>
+    </div>
+    <div class="item">
+      <h4>Call Us</h4>
+      <p class="description">asdsda</p>
+    </div>
+    <div class="item">
+      <h4>Email Us</h4>
+      <p class="description">asdsda</p>
+    </div>
+  </div>
+</section>
