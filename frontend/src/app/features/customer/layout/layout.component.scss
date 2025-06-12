@@ -3,8 +3,8 @@
 @use "sass:map";
 
 header {
-  background-color: theme.$primary-color;
-  color: theme.$primary-invert-color;
+  background-color: theme.$primary-invert-color;
+  color: theme.$primary-color;
   position: sticky;
   top: 0;
   height: 56px;
@@ -52,8 +52,8 @@ header {
 .mobile-menu {
   display: flex;
   flex-direction: column;
-  background-color: theme.$primary-color;
-  color: theme.$primary-invert-color;
+  background-color: theme.$primary-invert-color;
+  color: theme.$primary-color;
   padding: 1rem 1rem 2rem 1rem;
   gap: 1rem;
   position: fixed;
