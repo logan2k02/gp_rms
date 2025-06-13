@@ -8,6 +8,7 @@
   border-radius: 1rem;
   box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
   overflow: hidden;
+  height: 350px;
 
   .banner {
     position: relative;
@@ -25,11 +26,11 @@
     padding-bottom: 0.5rem;
     display: flex;
     flex-direction: column;
-    // margin-top: 0.5rem;
+    margin-left: 1.5rem;
 
     @include screen("lg") {
-      align-items: center;
-      text-align: center;
+      align-items: left;
+      text-align: left;
     }
 
     h4 {
@@ -40,7 +41,7 @@
       }
     }
 
-    .date {
+    .location {
       font-size: 0.9rem;
       font-weight: 300;
       margin-top: 1rem;
@@ -52,11 +53,13 @@
       margin-top: 0.5rem;
     }
 
-    a {
+    button {
       margin-top: 1rem;
+      margin-bottom: 1rem;
       font-weight: 500;
       font-size: 0.8rem;
-
+      width: 50%;
+      border-radius: 0%;
       &:hover {
         text-decoration: underline;
       }
