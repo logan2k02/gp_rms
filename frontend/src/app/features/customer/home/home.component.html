@@ -23,21 +23,24 @@
         table today and immerse yourself in a world of exquisite flavors and
         unparalleled comfort.
       </p>
-      <button class="btn" mat-flat-button>Reserve a Table</button>
+      <div class="hero-buttons">
+        <button class="btn" mat-raised-button>Reserve</button>
+        <button class="btn transparent-button" mat-button>Menu</button>
+      </div>
     </div>
   </div>
 </section>
 
 <section id="offers">
   <div class="heading centered">
-    <h5>Offers</h5>
-    <h2>Indulge in Our Exclusive Seasonal Promotions</h2>
-    <p class="description">
+    <h2>Our Best Offers</h2>
+    <!-- <p class="description">
       Experience the luxury of fine dining with our exclusive offers. Treat
       yourself to gourmet delights and special perks designed just for you.
-    </p>
+    </p> -->
   </div>
   <div class="items">
+    <app-offer-card-static />
     <app-offer-card />
     <app-offer-card />
     <app-offer-card />

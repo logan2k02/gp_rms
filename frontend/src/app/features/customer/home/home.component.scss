@@ -67,8 +67,20 @@
         margin-top: 1.5rem;
       }
 
-      .btn {
-        margin-top: 2.5rem;
+      .hero-buttons {
+        display: flex;
+        gap: 1rem;
+
+        .btn {
+          margin-top: 2.5rem;
+        }
+
+        .transparent-button {
+          background-color: transparent;
+          color: inherit;
+          box-shadow: none;
+          border: 1px solid white;
+        }
       }
     }
   }

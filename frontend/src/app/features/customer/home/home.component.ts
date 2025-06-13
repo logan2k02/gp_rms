@@ -10,10 +10,16 @@ import { MatButtonModule } from '@angular/material/button';
 import { ActivatedRoute } from '@angular/router';
 import { BaseComponent } from '../../../core/base.component';
 import { OfferCardComponent } from '../shared/offer-card/offer-card.component';
+import { OfferCardStaticComponent } from '../shared/offer-card-static/offer-card-static.component';
 
 @Component({
   selector: 'app-home',
-  imports: [NgOptimizedImage, OfferCardComponent, MatButtonModule],
+  imports: [
+    NgOptimizedImage,
+    OfferCardComponent,
+    OfferCardStaticComponent,
+    MatButtonModule,
+  ],
   templateUrl: './home.component.html',
   styleUrl: './home.component.scss',
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
