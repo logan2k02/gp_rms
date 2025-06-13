@@ -5,12 +5,16 @@
 .offer-card {
   display: flex;
   flex-direction: column;
+  border-radius: 1rem;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+  overflow: hidden;
 
   .banner {
     position: relative;
     aspect-ratio: 16/9;
     overflow: hidden;
     border-radius: 1rem;
+    margin: 1rem;
 
     img {
       object-fit: cover;
@@ -18,10 +22,10 @@
   }
 
   .bottom {
-    padding: 0.5rem;
+    padding-bottom: 0.5rem;
     display: flex;
     flex-direction: column;
-    margin-top: 0.5rem;
+    // margin-top: 0.5rem;
 
     @include screen("lg") {
       align-items: center;

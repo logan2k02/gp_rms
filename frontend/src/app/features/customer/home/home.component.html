@@ -39,15 +39,36 @@
       yourself to gourmet delights and special perks designed just for you.
     </p> -->
   </div>
+  <!-- <div class="items">
+    <app-offer-card-static />
+    <div class="items-scrollable">
+      <app-offer-card />
+      <app-offer-card />
+      <app-offer-card />
+      <app-offer-card />
+      <app-offer-card />
+      <app-offer-card />
+    </div>
+  </div> -->
   <div class="items">
     <app-offer-card-static />
-    <app-offer-card />
-    <app-offer-card />
-    <app-offer-card />
-    <app-offer-card />
-    <app-offer-card />
-    <app-offer-card />
+
+    <div class="scroll-wrapper">
+      <button class="scroll-arrow left" (click)="scrollLeft()">‹</button>
+
+      <div class="items-scrollable" #scrollContainer>
+        <app-offer-card></app-offer-card>
+        <app-offer-card></app-offer-card>
+        <app-offer-card></app-offer-card>
+        <app-offer-card></app-offer-card>
+        <app-offer-card></app-offer-card>
+        <app-offer-card></app-offer-card>
+      </div>
+
+      <button class="scroll-arrow right" (click)="scrollRight()">›</button>
+    </div>
   </div>
+
 </section>
 <section id="about">
   <div class="heading">

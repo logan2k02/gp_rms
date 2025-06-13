@@ -5,7 +5,10 @@ import {
   inject,
   OnInit,
   signal,
+  ElementRef,
+  ViewChild
 } from '@angular/core';
+
 import { MatButtonModule } from '@angular/material/button';
 import { ActivatedRoute } from '@angular/router';
 import { BaseComponent } from '../../../core/base.component';
@@ -34,6 +37,22 @@ export class HomeComponent extends BaseComponent implements OnInit {
     '/images/home/hero-slider-4.jpg',
     '/images/home/hero-slider-5.jpg',
   ];
+
+  @ViewChild('scrollContainer', { static: false }) scrollContainer!: ElementRef;
+
+  scrollLeft(): void {
+    this.scrollContainer.nativeElement.scrollBy({
+      left: -300,
+      behavior: 'smooth',
+    });
+  }
+
+  scrollRight(): void {
+    this.scrollContainer.nativeElement.scrollBy({
+      left: 300,
+      behavior: 'smooth',
+    });
+  }
 
   ngOnInit(): void {
     this.activatedRoute.fragment.subscribe((fragment: string | null) => {
