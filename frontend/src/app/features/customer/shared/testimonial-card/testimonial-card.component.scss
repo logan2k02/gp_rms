@@ -1,0 +1,49 @@
+.testimonial-content {
+  flex: 1;
+  text-align: center;
+  padding: 0 2rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.testimonial-content .logo {
+  height: auto;
+  width: 10%;
+  margin-bottom: 1.5rem;
+  align-self: center;
+}
+
+.testimonial-content .quote {
+  font-size: 1.2rem;
+  font-weight: 400;
+  color: #222;
+  margin-bottom: 2rem;
+}
+
+.user-info {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+}
+
+.user-photo {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.name {
+  font-weight: 600;
+  color: #111;
+  margin-bottom: 0.2rem;
+}
+
+.location {
+  color: #777;
+  font-size: 0.9rem;
+}

@@ -2,7 +2,9 @@
   <header>
     <div class="content">
       <nav class="">
-        <a routerLink="/"> <span class="logo"><img src="/images/home/logo.png"></span> </a>
+        <a routerLink="/">
+          <span class="logo"><img src="/images/home/logo.png" /></span>
+        </a>
         <button mat-icon-button class="mobile-menu-btn" (click)="toggleMenu()">
           <mat-icon>
             @if (menuOpen()) {
@@ -34,23 +36,20 @@
   <main><router-outlet /></main>
   <footer>
     <div class="content">
-      <span class="logo"><img src="/images/home/logo.png"></span>
+      <span class="logo"><img src="/images/home/logo.png" /></span>
       <nav class="">
-        <a routerLink="/" fragment="offers">Offers</a>
-        <a routerLink="/" fragment="about">Our Story</a>
+        <a routerLink="/" fragment="about">About Us</a>
         <a routerLink="/" fragment="contact">Contact Us</a>
-        <a routerLink="/info" fragment="loyalty-points">Loyalty Points</a>
+        <a routerLink="/" fragment="menu">Menu Options</a>
         <a routerLink="/info" fragment="reservation-info">Reservation Info</a>
       </nav>
       <div class="bottom">
         <nav class="">
           <a routerLink="/info" fragment="privacy-policy">Privacy Policy</a>
           <a routerLink="/info" fragment="terms-of-service">Terms of Service</a>
+          <a routerLink="/info" fragment="terms-of-service">Cookie Settings</a>
         </nav>
-        <p class="small">
-          © 2025 Resto Ease. All rights reserved. Developed by Group 8 of UCSC
-          2021/2022 Batch.
-        </p>
+        <p class="small">© 2025 THON HOTELS. All rights reserved.</p>
       </div>
     </div>
   </footer>

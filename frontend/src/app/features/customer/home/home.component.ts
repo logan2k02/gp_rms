@@ -6,7 +6,7 @@ import {
   OnInit,
   signal,
   ElementRef,
-  ViewChild
+  ViewChild,
 } from '@angular/core';
 
 import { MatButtonModule } from '@angular/material/button';
@@ -14,6 +14,7 @@ import { ActivatedRoute } from '@angular/router';
 import { BaseComponent } from '../../../core/base.component';
 import { OfferCardComponent } from '../shared/offer-card/offer-card.component';
 import { OfferCardStaticComponent } from '../shared/offer-card-static/offer-card-static.component';
+import { TestimonialCardComponent } from '../shared/testimonial-card/testimonial-card.component';
 
 @Component({
   selector: 'app-home',
@@ -21,6 +22,7 @@ import { OfferCardStaticComponent } from '../shared/offer-card-static/offer-card
     NgOptimizedImage,
     OfferCardComponent,
     OfferCardStaticComponent,
+    TestimonialCardComponent,
     MatButtonModule,
   ],
   templateUrl: './home.component.html',
@@ -52,6 +54,16 @@ export class HomeComponent extends BaseComponent implements OnInit {
       left: 300,
       behavior: 'smooth',
     });
+  }
+
+  @ViewChild('testimonialScroll', { static: false }) scrollEl!: ElementRef;
+
+  scrollLeftT() {
+    this.scrollEl.nativeElement.scrollBy({ left: -300, behavior: 'smooth' });
+  }
+
+  scrollRightT() {
+    this.scrollEl.nativeElement.scrollBy({ left: 300, behavior: 'smooth' });
   }
 
   ngOnInit(): void {
