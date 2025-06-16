@@ -5,12 +5,17 @@
 .offer-card {
   display: flex;
   flex-direction: column;
+  border-radius: 1rem;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+  overflow: hidden;
+  height: 350px;
 
   .banner {
     position: relative;
-    aspect-ratio: 16/9;
+    aspect-ratio: 16/14;
     overflow: hidden;
     border-radius: 1rem;
+    margin: 1rem;
 
     img {
       object-fit: cover;
@@ -18,14 +23,15 @@
   }
 
   .bottom {
-    padding: 0.5rem;
+    padding-bottom: 1rem;
     display: flex;
     flex-direction: column;
-    margin-top: 0.5rem;
+    // margin-top: 1rem;
+    margin-left: 1.5rem;
 
     @include screen("lg") {
-      align-items: center;
-      text-align: center;
+      align-items: left;
+      text-align: left;
     }
 
     h4 {
@@ -36,23 +42,40 @@
       }
     }
 
-    .date {
-      font-size: 0.9rem;
+    .description {
+      font-size: 0.8rem;
       font-weight: 300;
       margin-top: 1rem;
+      margin-bottom: 1rem;
+      line-height: 1rem;
+      color: rgb(0, 0, 0, 0.5);
     }
 
     .small {
       font-size: 0.75rem;
       font-weight: 300;
-      margin-top: 0.5rem;
+      text-decoration: line-through;
     }
 
-    a {
+    .newprice {
+      font-size: 1.2rem;
+      font-weight: 700;
+      color: theme.$primary-color;
+    }
+
+    .price {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    button {
       margin-top: 1rem;
+      margin-bottom: 1rem;
       font-weight: 500;
       font-size: 0.8rem;
-
+      width: 50%;
+      border-radius: 0%;
       &:hover {
         text-decoration: underline;
       }

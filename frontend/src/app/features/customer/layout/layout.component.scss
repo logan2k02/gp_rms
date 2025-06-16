@@ -95,21 +95,57 @@ footer {
       align-items: stretch;
     }
 
-    nav {
+    .top {
       display: flex;
-      flex-direction: column;
-      gap: 1.4rem;
-      align-items: center;
+      flex-direction: row;
+      justify-content: space-between;
 
-      a {
-        &:hover {
-          text-decoration: underline;
+      .permalinks {
+        display: flex;
+        flex-direction: column;
+        gap: 2rem;
+
+        nav {
+          display: flex;
+          flex-direction: column;
+          gap: 1.4rem;
+          align-items: center;
+
+          a {
+            &:hover {
+              text-decoration: underline;
+            }
+          }
+
+          @include screen("md") {
+            flex-direction: row;
+            align-items: start;
+          }
         }
       }
 
-      @include screen("md") {
-        flex-direction: row;
-        align-items: start;
+      .offer-request {
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
+        .input-email {
+          display: flex;
+          gap: 1rem;
+          input {
+            background: theme.$primary-color;
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            border-radius: 1rem;
+            padding: 0.5rem 1rem;
+          }
+          .transparent-button {
+            background-color: transparent;
+            color: inherit;
+            box-shadow: none;
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            border-radius: 1rem;
+            padding: 0.5rem 1rem;
+          }
+        }
       }
     }
 
@@ -134,6 +170,24 @@ footer {
 
       p {
         max-width: 24rem;
+      }
+
+      nav {
+        display: flex;
+        flex-direction: column;
+        gap: 1.4rem;
+        align-items: center;
+
+        a {
+          &:hover {
+            text-decoration: underline;
+          }
+        }
+
+        @include screen("md") {
+          flex-direction: row;
+          align-items: start;
+        }
       }
     }
   }

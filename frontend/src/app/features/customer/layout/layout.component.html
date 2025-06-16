@@ -2,7 +2,9 @@
   <header>
     <div class="content">
       <nav class="">
-        <a routerLink="/"> <span class="logo">Thon</span> </a>
+        <a routerLink="/">
+          <span class="logo"><img src="/images/home/logo.png" /></span>
+        </a>
         <button mat-icon-button class="mobile-menu-btn" (click)="toggleMenu()">
           <mat-icon>
             @if (menuOpen()) {
@@ -13,13 +15,14 @@
           </mat-icon>
         </button>
         <nav class="hide-on-mobile">
+          <a routerLink="/" fragment="menu">Home</a>
           <a routerLink="/" fragment="menu">Menu</a>
           <a routerLink="/" fragment="reservations">Reservations</a>
           <a routerLink="/" fragment="about">Our Story</a>
         </nav>
       </nav>
       <nav>
-        <a routerLink="/menu" mat-raised-button class="btn">Our Menu</a>
+        <a routerLink="/menu" mat-flat-button class="btn">Our Menu</a>
         <a routerLink="/login" class="hide-on-mobile">Sign in</a>
       </nav>
     </div>
@@ -33,23 +36,33 @@
   <main><router-outlet /></main>
   <footer>
     <div class="content">
-      <span class="logo">Thon</span>
-      <nav class="">
-        <a routerLink="/" fragment="offers">Offers</a>
-        <a routerLink="/" fragment="about">Our Story</a>
-        <a routerLink="/" fragment="contact">Contact Us</a>
-        <a routerLink="/info" fragment="loyalty-points">Loyalty Points</a>
-        <a routerLink="/info" fragment="reservation-info">Reservation Info</a>
-      </nav>
+      <div class="top">
+        <div class="permalinks">
+          <span class="logo"><img src="/images/home/logo.png" /></span>
+          <nav class="">
+            <a routerLink="/" fragment="about">About Us</a>
+            <a routerLink="/" fragment="contact">Contact Us</a>
+            <a routerLink="/" fragment="menu">Menu Options</a>
+            <a routerLink="/info" fragment="reservation-info"
+              >Reservation Info</a
+            >
+          </nav>
+        </div>
+        <div class="offer-request">
+          <p>To receive latest offers</p>
+          <div class="input-email">
+            <input type="text" placeholder="Enter your email" />
+            <button class="transparent-button">Join</button>
+          </div>
+        </div>
+      </div>
       <div class="bottom">
         <nav class="">
           <a routerLink="/info" fragment="privacy-policy">Privacy Policy</a>
           <a routerLink="/info" fragment="terms-of-service">Terms of Service</a>
+          <a routerLink="/info" fragment="terms-of-service">Cookie Settings</a>
         </nav>
-        <p class="small">
-          © 2025 Resto Ease. All rights reserved. Developed by Group 8 of UCSC
-          2021/2022 Batch.
-        </p>
+        <p class="small">© 2025 THON HOTELS. All rights reserved.</p>
       </div>
     </div>
   </footer>
