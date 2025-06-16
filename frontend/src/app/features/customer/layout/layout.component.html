@@ -36,13 +36,26 @@
   <main><router-outlet /></main>
   <footer>
     <div class="content">
-      <span class="logo"><img src="/images/home/logo.png" /></span>
-      <nav class="">
-        <a routerLink="/" fragment="about">About Us</a>
-        <a routerLink="/" fragment="contact">Contact Us</a>
-        <a routerLink="/" fragment="menu">Menu Options</a>
-        <a routerLink="/info" fragment="reservation-info">Reservation Info</a>
-      </nav>
+      <div class="top">
+        <div class="permalinks">
+          <span class="logo"><img src="/images/home/logo.png" /></span>
+          <nav class="">
+            <a routerLink="/" fragment="about">About Us</a>
+            <a routerLink="/" fragment="contact">Contact Us</a>
+            <a routerLink="/" fragment="menu">Menu Options</a>
+            <a routerLink="/info" fragment="reservation-info"
+              >Reservation Info</a
+            >
+          </nav>
+        </div>
+        <div class="offer-request">
+          <p>To receive latest offers</p>
+          <div class="input-email">
+            <input type="text" placeholder="Enter your email" />
+            <button class="transparent-button">Join</button>
+          </div>
+        </div>
+      </div>
       <div class="bottom">
         <nav class="">
           <a routerLink="/info" fragment="privacy-policy">Privacy Policy</a>
