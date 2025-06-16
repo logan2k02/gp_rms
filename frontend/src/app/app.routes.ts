@@ -22,6 +22,13 @@ export const routes: Routes = [
           ),
       },
       {
+        path: 'reserve',
+        loadComponent: () =>
+          import('./features/customer/reserve-table/reserve-table.component').then(
+            (m) => m.ReserveTableComponent
+          ),
+      },
+      {
         path: 'info',
         loadComponent: () =>
           import('./features/customer/info/info.component').then(

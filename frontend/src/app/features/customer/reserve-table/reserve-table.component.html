@@ -1,0 +1,173 @@
+<section id="hero">
+  <div *ngIf="step === 0" class="heading">
+    <h1>Reserve Your Table Instantly</h1>
+    <p class="description">
+      Book your spot in just a few taps—choose your time, seats, and we'll send
+      you an instant SMS confirmation.
+    </p>
+    <div class="buttons">
+      <button (click)="step = 1" class="btn" mat-flat-button>
+        Start Reservation
+      </button>
+    </div>
+  </div>
+
+  <div *ngIf="step === 1" class="heading">
+    <div class="progress">
+      <div class="step">
+        <div class="circle">1</div>
+      </div>
+      <div class="step">
+        <div class="circle">2</div>
+      </div>
+      <div class="step">
+        <div class="circle">3</div>
+      </div>
+      <div class="step">
+        <div class="circle">4</div>
+      </div>
+    </div>
+
+    <h2>Let us start with your name and mobile number</h2>
+    <p class="description">
+      Please provide your details to secure your reservation.
+    </p>
+
+    <div class="form-group">
+      <label for="name">Enter your name*</label>
+      <input type="text" name="name" placeholder="Your name" />
+    </div>
+
+    <div class="form-group">
+      <label for="mobile">Enter your mobile*</label>
+      <div class="input-icon">
+        <span class="material-icons">call</span>
+        <input type="text" name="mobile" placeholder="0716060662" />
+      </div>
+    </div>
+
+    <div class="button-group">
+      <button mat-stroked-button color="primary">Cancel</button>
+      <button mat-flat-button color="primary" (click)="goToNextStep()">
+        Next
+      </button>
+    </div>
+  </div>
+
+  <div *ngIf="step === 2" class="heading">
+    <div class="progress">
+      <div class="step">
+        <div class="circle filled">1</div>
+      </div>
+      <div class="step">
+        <div class="circle">2</div>
+      </div>
+      <div class="step">
+        <div class="circle">3</div>
+      </div>
+      <div class="step">
+        <div class="circle">4</div>
+      </div>
+    </div>
+
+    <h2>Verify your mobile number</h2>
+    <p class="description">
+      Hi Alex, we’ve sent your OTP to 0716060662. Please enter the code below to
+      continue
+    </p>
+
+    <div class="form-group">
+      <label for="otp">Enter your OTP code here</label>
+      <input type="text" name="otp" />
+    </div>
+
+    <div class="button-group">
+      <button mat-stroked-button color="primary" (click)="goToPrevStep()">
+        Go Back
+      </button>
+      <button mat-flat-button color="primary" (click)="goToNextStep()">
+        Verify
+      </button>
+    </div>
+  </div>
+
+  <div *ngIf="step === 3" class="heading">
+    <div class="progress">
+      <div class="step">
+        <div class="circle done">
+          <span class="material-icons">check</span>
+        </div>
+      </div>
+      <div class="step">
+        <div class="circle filled">2</div>
+      </div>
+      <div class="step">
+        <div class="circle">3</div>
+      </div>
+      <div class="step">
+        <div class="circle">4</div>
+      </div>
+    </div>
+
+    <h2>What can we assist you with today?</h2>
+    <p class="description">
+      Select your service type and preferred buffet experience.
+    </p>
+
+    <div class="form-group">
+      <label for="service">Service type</label>
+      <div class="service-options">
+        <label class="option">
+          <input type="radio" name="service" value="brunch" />
+          <span class="label">A</span>
+          <span class="text">Morning Brunch</span>
+        </label>
+
+        <label class="option">
+          <input type="radio" name="service" value="lunch" />
+          <span class="label">B</span>
+          <span class="text">Midday Lunch</span>
+        </label>
+
+        <label class="option">
+          <input type="radio" name="service" value="hightea" />
+          <span class="label">C</span>
+          <span class="text">Afternoon High Tea</span>
+        </label>
+
+        <label class="option">
+          <input type="radio" name="service" value="dinner" />
+          <span class="label">D</span>
+          <span class="text">Signature Dinner</span>
+        </label>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="date">Preferred date for reservation</label>
+      <input type="date" name="date" />
+    </div>
+
+    <div class="form-group">
+      <label for="time">Select a time slot that works for you</label>
+      <select name="time" id="time">
+        <option value="8:30">8:30 AM</option>
+        <option value="9:00">9:00 AM</option>
+        <option value="9:30">9:30 AM</option>
+      </select>
+    </div>
+
+    <div class="button-group">
+      <button mat-stroked-button color="primary" (click)="goToPrevStep()">
+        Back
+      </button>
+      <button mat-flat-button color="primary" (click)="goToNextStep()">
+        Next
+      </button>
+    </div>
+  </div>
+
+  <div class="content">
+    <img src="/images/reserve-table/reserve.png" alt="" />
+  </div>
+</section>
