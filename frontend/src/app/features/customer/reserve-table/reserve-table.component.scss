@@ -236,6 +236,46 @@ section {
           }
         }
       }
+
+      .guest-options {
+        display: flex;
+        gap: 0.5rem;
+        margin-top: 1rem;
+
+        .guest-option {
+          display: flex;
+          align-items: center;
+          padding: 0.5rem 1rem;
+          border: 1px solid #ccc;
+          border-radius: 6px;
+          cursor: pointer;
+          transition: all 0.2s ease;
+          user-select: none;
+          background-color: #f9f9f9;
+
+          input[type="radio"] {
+            display: none;
+
+            &:checked + .text {
+              color: white;
+            }
+
+            &:checked ~ .text {
+              color: white;
+            }
+          }
+
+          input[type="radio"]:checked ~ .guest-text {
+            background-color: #000;
+            color: white;
+          }
+
+          &:has(input[type="radio"]:checked) {
+            background-color: #000;
+            border-color: #000;
+          }
+        }
+      }
     }
 
     .button-group {
