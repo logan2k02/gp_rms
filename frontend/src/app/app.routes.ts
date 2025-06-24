@@ -29,6 +29,13 @@ export const routes: Routes = [
           ),
       },
       {
+        path: 'menu',
+        loadComponent: () =>
+          import('./features/customer/menu/menu.component').then(
+            (m) => m.MenuComponent
+          ),
+      },
+      {
         path: 'info',
         loadComponent: () =>
           import('./features/customer/info/info.component').then(
