@@ -4,6 +4,8 @@ import {
   staffAuthNotRequiredGuard,
   staffAuthRequiredGuard,
 } from './core/guards';
+import { membersListResolver } from './features/staff/admin/manage-staff/members-list/members-list.resolver';
+import { updateMemberResolver } from './features/staff/admin/manage-staff/update-member/update-member.resolver';
 
 export const routes: Routes = [
   // Customer Routes
@@ -24,9 +26,9 @@ export const routes: Routes = [
       {
         path: 'reserve',
         loadComponent: () =>
-          import('./features/customer/reserve-table/reserve-table.component').then(
-            (m) => m.ReserveTableComponent
-          ),
+          import(
+            './features/customer/reserve-table/reserve-table.component'
+          ).then((m) => m.ReserveTableComponent),
       },
       {
         path: 'menu',
@@ -77,6 +79,45 @@ export const routes: Routes = [
               import('./features/staff/admin/home/home.component').then(
                 (m) => m.HomeComponent
               ),
+          },
+          {
+            path: 'manage-staff',
+            children: [
+              {
+                path: '',
+                loadComponent: () =>
+                  import(
+                    './features/staff/admin/manage-staff/members-list/members-list.component'
+                  ).then((m) => m.MembersListComponent),
+                resolve: {
+                  membersList: membersListResolver,
+                },
+              },
+              {
+                path: 'new',
+                loadComponent: () =>
+                  import(
+                    './features/staff/admin/manage-staff/new-member/new-member.component'
+                  ).then((m) => m.NewMemberComponent),
+              },
+              {
+                path: 'update/:id',
+                loadComponent: () =>
+                  import(
+                    './features/staff/admin/manage-staff/update-member/update-member.component'
+                  ).then((m) => m.UpdateMemberComponent),
+                resolve: {
+                  user: updateMemberResolver,
+                },
+              },
+              {
+                path: 'audit-logs/:id',
+                loadComponent: () =>
+                  import(
+                    './features/staff/admin/manage-staff/audit-logs/audit-logs.component'
+                  ).then((m) => m.AuditLogsComponent),
+              },
+            ],
           },
         ],
       },

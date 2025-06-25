@@ -17,7 +17,7 @@ import { getEndpointNameForRole } from '../../../core/enums';
 import {
   AlertService,
   GlobalLoadingBarService,
-  StaffAuthService,
+  StaffUsersService,
 } from '../../../core/services';
 @Component({
   selector: 'app-login',
@@ -36,7 +36,7 @@ import {
 export class LoginComponent extends BaseComponent {
   private alertService = inject(AlertService);
   private loadingBar = inject(GlobalLoadingBarService);
-  private authService = inject(StaffAuthService);
+  private staffUsersService = inject(StaffUsersService);
   private router = inject(Router);
 
   form: FormGroup = new FormGroup({
@@ -73,17 +73,19 @@ export class LoginComponent extends BaseComponent {
     }
 
     const { username, password } = this.form.value;
-    this.sub$.sink = this.authService.login(username, password).subscribe({
-      next: ({ user }) => {
-        this.alertService.success(`Welcome ${user.name.split(' ')[0]}!`);
-        this.loadingBar.stopLoading();
-        this.router.navigate(['/staff/' + getEndpointNameForRole(user.role)]);
-      },
-      error: (error) => {
-        this.alertService.error(error);
-        this.loadingBar.stopLoading();
-      },
-    });
+    this.sub$.sink = this.staffUsersService
+      .login(username, password)
+      .subscribe({
+        next: ({ user }) => {
+          this.alertService.success(`Welcome ${user.name.split(' ')[0]}!`);
+          this.loadingBar.stopLoading();
+          this.router.navigate(['/staff/' + getEndpointNameForRole(user.role)]);
+        },
+        error: (error) => {
+          this.alertService.error(error);
+          this.loadingBar.stopLoading();
+        },
+      });
   }
 
   get isLoading() {

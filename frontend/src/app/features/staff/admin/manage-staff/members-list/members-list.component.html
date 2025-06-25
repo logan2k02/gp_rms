@@ -1,0 +1,103 @@
+<mat-card appearance="outlined">
+  <mat-card-header class="mat-card-header">
+    <mat-card-title> Manage Staff Users</mat-card-title>
+    <a
+      routerLink="/staff/admin/manage-staff/new"
+      mat-flat-button
+      color="primary"
+      class="new-button"
+    >
+      <mat-icon>{{ getAppIcon("add_user") }}</mat-icon>
+      New User</a
+    >
+    <mat-card-subtitle style="padding: 0.5rem 0">
+      <mat-chip-listbox
+        (change)="setRole($event.value)"
+        aria-label="Fish selection"
+      >
+        @for (role of roles; track $index) {
+        <mat-chip-option
+          [value]="role.value"
+          [selected]="activeRole() === role.value"
+          disabled="{{ getRoleCount(role.value) === 0 }}"
+        >
+          {{ getRoleCount(role.value) || "No" }} {{ role.label
+          }}{{ getRoleCount(role.value) === 1 ? "" : "s" }}
+        </mat-chip-option>
+        }
+      </mat-chip-listbox>
+    </mat-card-subtitle>
+  </mat-card-header>
+  <mat-card-content>
+    <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+      <!--- Note that these columns can be defined in any order.
+        The actual rendered columns are set as a property on the row definition" -->
+
+      <!-- Position Column -->
+      <ng-container matColumnDef="role">
+        <th mat-header-cell *matHeaderCellDef>Role</th>
+        <td mat-cell *matCellDef="let element">{{ element.role }}</td>
+      </ng-container>
+
+      <!-- Name Column -->
+      <ng-container matColumnDef="name">
+        <th mat-header-cell *matHeaderCellDef>Name</th>
+        <td mat-cell *matCellDef="let element">{{ element.name }}</td>
+      </ng-container>
+
+      <!-- Weight Column -->
+      <ng-container matColumnDef="username">
+        <th mat-header-cell *matHeaderCellDef>Username</th>
+        <td mat-cell *matCellDef="let element">
+          <span
+            role="button"
+            style="text-decoration: underline; cursor: pointer"
+            (click)="copyUsername(element.username)"
+            matTooltip="Click to copy username"
+          >
+            {{ element.username }}
+          </span>
+        </td>
+      </ng-container>
+
+      <ng-container matColumnDef="actions">
+        <th mat-header-cell *matHeaderCellDef>Actions</th>
+        <td mat-cell *matCellDef="let element">
+          <button
+            mat-icon-button
+            [matMenuTriggerFor]="menu"
+            aria-label="Example icon-button with a menu"
+          >
+            <mat-icon>more_vert</mat-icon>
+          </button>
+          <mat-menu #menu="matMenu">
+            <a
+              mat-menu-item
+              [routerLink]="[
+                '/staff/admin/manage-staff/audit-logs',
+                element.id
+              ]"
+            >
+              <mat-icon>{{ getAppIcon("history") }}</mat-icon>
+              <span>Audit Logs</span>
+            </a>
+            <a
+              mat-menu-item
+              [routerLink]="['/staff/admin/manage-staff/update', element.id]"
+            >
+              <mat-icon>{{ getAppIcon("delete") }}</mat-icon>
+              <span>Update Account</span>
+            </a>
+            <button mat-menu-item (click)="deleteAccount(element.id)">
+              <mat-icon>{{ getAppIcon("edit") }}</mat-icon>
+              <span>Delete Account</span>
+            </button>
+          </mat-menu>
+        </td>
+      </ng-container>
+
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+    </table>
+  </mat-card-content>
+</mat-card>

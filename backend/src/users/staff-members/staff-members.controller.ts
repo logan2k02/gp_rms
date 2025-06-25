@@ -5,8 +5,8 @@ import {
   Get,
   Param,
   ParseIntPipe,
-  Patch,
   Post,
+  Put,
 } from '@nestjs/common';
 import { StaffMember, StaffRole } from '@prisma/client';
 import {
@@ -52,7 +52,7 @@ export class StaffMembersController {
   }
 
   @AllowOnlyStaffMembers(StaffRole.Admin)
-  @Patch('accounts/:id')
+  @Put('accounts/:id')
   update(
     @Param('id', ParseIntPipe) id: number,
     @Body() updateStaffMemberDto: UpdateStaffMemberDto,
@@ -73,7 +73,7 @@ export class StaffMembersController {
   }
 
   @AllowOnlyStaffMembers()
-  @Patch('profile')
+  @Put('profile')
   updateProfile(
     @StaffMemberAuthFromRequest() auth: RequestAuth<StaffMember>,
     @Body() updateStaffMemberDto: UpdateStaffMemberDto,

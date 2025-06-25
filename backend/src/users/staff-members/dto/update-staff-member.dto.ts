@@ -1,4 +1,28 @@
-import { PartialType } from '@nestjs/mapped-types';
-import { CreateStaffMemberDto } from './create-staff-member.dto';
+import { StaffRole } from '@prisma/client';
+import {
+  IsEnum,
+  IsNotEmpty,
+  IsOptional,
+  IsString,
+  MinLength,
+} from 'class-validator';
 
-export class UpdateStaffMemberDto extends PartialType(CreateStaffMemberDto) {}
+export class UpdateStaffMemberDto {
+  @IsString()
+  @IsNotEmpty()
+  @IsEnum(StaffRole)
+  role: StaffRole;
+
+  @IsString()
+  @IsNotEmpty()
+  name: string;
+
+  @IsString()
+  @IsNotEmpty()
+  @MinLength(4)
+  username: string;
+
+  @IsString()
+  @IsOptional()
+  password: string;
+}

@@ -12,7 +12,7 @@ import {
   getNameForRole,
   StaffRole,
 } from '../../../core/enums';
-import { AlertService, StaffAuthService } from '../../../core/services';
+import { AlertService, StaffUsersService } from '../../../core/services';
 
 interface NavLink {
   icon: string;
@@ -36,12 +36,12 @@ interface NavLink {
   styleUrl: './layout.component.scss',
 })
 export class LayoutComponent extends BaseComponent {
-  private authService = inject(StaffAuthService);
+  private staffUsersService = inject(StaffUsersService);
   private router = inject(Router);
   private alertService = inject(AlertService);
 
   get user() {
-    return this.authService.auth?.user;
+    return this.staffUsersService.auth?.user;
   }
 
   get role() {
@@ -53,7 +53,7 @@ export class LayoutComponent extends BaseComponent {
   }
 
   logout() {
-    this.sub$.sink = this.authService.logout().subscribe({
+    this.sub$.sink = this.staffUsersService.logout().subscribe({
       next: () => {
         this.router.navigate(['staff', 'login']);
       },
@@ -89,6 +89,11 @@ export class LayoutComponent extends BaseComponent {
     switch (this.user.role) {
       case StaffRole.Admin:
         links.push(
+          {
+            icon: this.getAppIcon('staff'),
+            title: 'Manage Staff',
+            link: roleEndPoint + '/manage-staff',
+          },
           {
             icon: this.getAppIcon('food_menu'),
             title: 'Menus',
