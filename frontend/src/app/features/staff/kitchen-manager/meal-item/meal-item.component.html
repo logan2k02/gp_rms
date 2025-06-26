@@ -1,0 +1,63 @@
+<div class="meal-item">
+  <div class="back-button">
+    <button
+      mat-icon-button
+      color="primary"
+      routerLink="/staff/kitchen-manager/meals"
+    >
+      <mat-icon>arrow_back</mat-icon>
+    </button>
+  </div>
+
+  <mat-card class="food-detail-card">
+    <mat-card-header>
+      <div mat-card-avatar class="food-image-avatar">
+        <img src="/images/menu/item1.png" alt="Food Image" />
+      </div>
+      <mat-card-title>Grilled Chicken Burger</mat-card-title>
+      <mat-card-subtitle>Contains Gluten, Dairy</mat-card-subtitle>
+    </mat-card-header>
+
+    <mat-card-content>
+      <section class="section">
+        <h3>Description</h3>
+        <p>
+          A juicy grilled chicken burger with melted cheese, lettuce, tomato,
+          and our signature sauce.
+        </p>
+      </section>
+
+      <section class="section">
+        <h3>Ingredients</h3>
+        <mat-chip-grid>
+          <mat-chip-row color="primary" selected>Chicken</mat-chip-row>
+          <mat-chip-row color="primary" selected>Cheddar Cheese</mat-chip-row>
+          <mat-chip-row color="primary" selected>Lettuce</mat-chip-row>
+          <mat-chip-row color="primary" selected>Tomato</mat-chip-row>
+          <mat-chip-row color="primary" selected>Burger Bun</mat-chip-row>
+          <mat-chip-row color="warn">Gluten</mat-chip-row>
+          <mat-chip-row color="warn">Dairy</mat-chip-row>
+        </mat-chip-grid>
+      </section>
+
+      <section class="section">
+        <h3>Preparation Steps</h3>
+        <ol>
+          <li>Grill the chicken breast for 5–6 minutes on each side.</li>
+          <li>Toast the buns with a little butter.</li>
+          <li>Assemble with sauce, lettuce, tomato, cheese, and chicken.</li>
+        </ol>
+      </section>
+
+      <section class="section">
+        <h3>Current Status</h3>
+        <mat-slide-toggle [checked]="true" disabled>Available</mat-slide-toggle>
+      </section>
+    </mat-card-content>
+
+    <mat-card-actions align="end">
+      <button mat-flat-button color="primary">Edit Recipe</button>
+      <button mat-stroked-button color="warn">Remove Item</button>
+    </mat-card-actions>
+  </mat-card>
+</div>

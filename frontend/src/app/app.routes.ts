@@ -136,7 +136,7 @@ export const routes: Routes = [
       },
       {
         path: 'kitchen-manager',
-        canActivate: [staffAuthRequiredGuard(StaffRole.KitchenManager)],
+        // canActivate: [staffAuthRequiredGuard(StaffRole.KitchenManager)],
         children: [
           {
             path: '',
@@ -144,6 +144,34 @@ export const routes: Routes = [
               import(
                 './features/staff/kitchen-manager/home/home.component'
               ).then((m) => m.HomeComponent),
+          },
+          {
+            path: 'archived-orders',
+            loadComponent: () =>
+              import(
+                './features/staff/kitchen-manager/home/home.component'
+              ).then((m) => m.HomeComponent),
+          },
+          {
+            path: 'meals',
+            loadComponent: () =>
+              import(
+                './features/staff/kitchen-manager/meals/meals.component'
+              ).then((m) => m.MealsComponent),
+          },
+          {
+            path: 'meal-item',
+            loadComponent: () =>
+              import(
+                './features/staff/kitchen-manager/meal-item/meal-item.component'
+              ).then((m) => m.MealItemComponent),
+          },
+          {
+            path: 'ingredients',
+            loadComponent: () =>
+              import(
+                './features/staff/kitchen-manager/ingredients/ingredients.component'
+              ).then((m) => m.IngredientsComponent),
           },
         ],
       },

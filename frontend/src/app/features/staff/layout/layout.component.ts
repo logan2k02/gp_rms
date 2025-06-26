@@ -71,7 +71,7 @@ export class LayoutComponent extends BaseComponent {
         {
           icon: this.getAppIcon('login'),
           title: 'Login',
-          link: '/login',
+          link: '/staff/login',
         },
       ];
     }
@@ -79,16 +79,16 @@ export class LayoutComponent extends BaseComponent {
     const roleEndPoint = '/staff/' + getEndpointNameForRole(this.user.role);
 
     const links: NavLink[] = [];
-    links.push({
-      icon: this.getAppIcon('home'),
-      title: 'Home',
-      link: roleEndPoint,
-      matchExactly: true,
-    });
 
     switch (this.user.role) {
       case StaffRole.Admin:
         links.push(
+          {
+            icon: this.getAppIcon('home'),
+            title: 'Home',
+            link: roleEndPoint,
+            matchExactly: true,
+          },
           {
             icon: this.getAppIcon('staff'),
             title: 'Manage Staff',
@@ -136,38 +136,18 @@ export class LayoutComponent extends BaseComponent {
         links.push(
           {
             icon: this.getAppIcon('food_menu'),
-            title: 'Menus',
-            link: roleEndPoint + '/menus',
+            title: 'Current Orders',
+            link: roleEndPoint + '/',
+          },
+          {
+            icon: this.getAppIcon('food_menu'),
+            title: 'Archived Orders',
+            link: roleEndPoint + '/archived-orders',
           },
           {
             icon: this.getAppIcon('meal'),
             title: 'Meals',
             link: roleEndPoint + '/meals',
-          },
-          {
-            icon: this.getAppIcon('location'),
-            title: 'Locations',
-            link: roleEndPoint + '/locations',
-          },
-          {
-            icon: this.getAppIcon('table'),
-            title: 'Tables',
-            link: roleEndPoint + '/tables',
-          },
-          {
-            icon: this.getAppIcon('staff'),
-            title: 'Waiters',
-            link: roleEndPoint + '/waiters',
-          },
-          {
-            icon: this.getAppIcon('promos'),
-            title: 'Promos',
-            link: roleEndPoint + '/promos',
-          },
-          {
-            icon: this.getAppIcon('reports'),
-            title: 'Sales',
-            link: roleEndPoint + '/sales',
           }
         );
         break;

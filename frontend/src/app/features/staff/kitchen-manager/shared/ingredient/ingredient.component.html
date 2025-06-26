@@ -1,0 +1,53 @@
+<mat-card class="ingredient-card">
+  <div class="card-header">
+    <h4 class="ingredient-name">Turmeric Powder</h4>
+  </div>
+
+  <div class="ingredient-details">
+    <div class="detail-row">
+      <span class="detail-label">Current Stock:</span>
+      <span class="detail-value">2.5 kg</span>
+    </div>
+
+    <div class="detail-row">
+      <span class="detail-label">Unit Cost:</span>
+      <span class="detail-value">Rs. 1250/kg</span>
+    </div>
+
+    <div class="detail-row">
+      <span class="detail-label">Origin:</span>
+      <span class="detail-value">India</span>
+    </div>
+  </div>
+
+  <!-- Allergen Tags -->
+  <div class="allergen-section" *ngIf="hasAllergens">
+    <mat-chip-set class="allergen-chips">
+      <mat-chip class="allergen-chip">
+        <mat-icon>warning</mat-icon>
+        Contains Gluten
+      </mat-chip>
+    </mat-chip-set>
+  </div>
+
+  <!-- Expiry Information -->
+  <mat-card class="expiry-card">
+    <div class="expiry-header">
+      <mat-icon class="expiry-icon">schedule</mat-icon>
+      <span class="expiry-label">Best Before:</span>
+    </div>
+    <div class="expiry-date">Dec 15, 2025</div>
+  </mat-card>
+
+  <!-- Supplier Info -->
+  <div class="supplier-info">
+    <div class="supplier-row">
+      <mat-icon>business</mat-icon>
+      <span><strong>Supplier:</strong> Spice World Ltd</span>
+    </div>
+    <div class="supplier-row">
+      <mat-icon>update</mat-icon>
+      <span><strong>Last Updated:</strong> 2 days ago</span>
+    </div>
+  </div>
+</mat-card>
