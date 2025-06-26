@@ -1,7 +1,25 @@
-<div class="kitchen-container">
+<mat-menu #menu="matMenu">
+  <button mat-menu-item>
+    <mat-icon>dialpad</mat-icon>
+    <span>Redial</span>
+  </button>
+  <button mat-menu-item disabled>
+    <mat-icon>voicemail</mat-icon>
+    <span>Check voice mail</span>
+  </button>
+  <button mat-menu-item>
+    <mat-icon>notifications_off</mat-icon>
+    <span>Disable alerts</span>
+  </button>
+</mat-menu>
+
+<div class="kitchen-container" *ngIf="currentView === 'current'">
+  <!-- New + In Progress orders -->
   <div class="order-section new-orders">
     <h2>New Orders</h2>
     <div class="cards">
+      <app-order-card></app-order-card>
+      <app-order-card></app-order-card>
       <app-order-card></app-order-card>
       <app-order-card></app-order-card>
       <app-order-card></app-order-card>
@@ -18,6 +36,26 @@
       <app-order-card></app-order-card>
       <app-order-card></app-order-card>
       <app-order-card></app-order-card>
+      <app-order-card></app-order-card>
+    </div>
+  </div>
+</div>
+
+<div class="kitchen-container" *ngIf="currentView === 'archived'">
+  <!-- Completed + Rejected orders -->
+  <div class="order-section completed-orders">
+    <h2>Completed Orders</h2>
+    <div class="cards">
+      <app-order-card></app-order-card>
+      <app-order-card></app-order-card>
+      <app-order-card></app-order-card>
+      <app-order-card></app-order-card>
+    </div>
+  </div>
+
+  <div class="order-section rejected-orders">
+    <h2>Rejected Orders</h2>
+    <div class="cards">
       <app-order-card></app-order-card>
       <app-order-card></app-order-card>
       <app-order-card></app-order-card>
