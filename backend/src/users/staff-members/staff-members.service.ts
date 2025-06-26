@@ -35,7 +35,8 @@ export class StaffMembersService {
     });
   }
 
-  findAll() {
+  async findAll() {
+    await new Promise((resolve) => setTimeout(resolve, 2000)); // Simulate delay for demonstration purposes
     return this.db.staffMember.findMany({});
   }
 
@@ -59,9 +60,19 @@ export class StaffMembersService {
       );
     }
 
+    let passwordHash: string | undefined = undefined;
+    if (updateStaffMemberDto.password) {
+      passwordHash = await argon.hash(updateStaffMemberDto.password);
+    }
+
     return this.db.staffMember.update({
       where: { id },
-      data: updateStaffMemberDto,
+      data: {
+        name: updateStaffMemberDto.name,
+        username: updateStaffMemberDto.username,
+        role: updateStaffMemberDto.role,
+        passwordHash: passwordHash, // Only update password if provided
+      },
     });
   }
 

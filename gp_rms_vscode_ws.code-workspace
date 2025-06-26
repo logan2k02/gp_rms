@@ -9,10 +9,6 @@
 			"path": "frontend"
 		},
 		{
-			"name": "ml-server",
-			"path": "ml-server"
-		},
-		{
 			"name": "root",
 			"path": "."
 		}

@@ -21,16 +21,16 @@ import { HttpInterceptor } from './core/inteceptors';
 import {
   CustomerAuthService,
   LoggerService,
-  StaffAuthService,
+  StaffUsersService,
 } from './core/services';
 import { AppTitleStrategy } from './core/strategies';
 
 const initAuth = () => {
-  const staffAuthService = inject(StaffAuthService);
+  const staffUsersService = inject(StaffUsersService);
   const customerAuthService = inject(CustomerAuthService);
   const logger = inject(LoggerService);
 
-  const staffAction = staffAuthService.refresh().pipe(
+  const staffAction = staffUsersService.refresh().pipe(
     catchError((err) => {
       logger.warn(
         'AppInitializer',

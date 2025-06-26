@@ -48,7 +48,7 @@ export const AppIcons = {
   staff: 'people_alt',
   add_user: 'person_add',
   promos: 'local_offer',
-  invoice_history: 'history',
+  history: 'history',
   reports: 'assessment',
   food_menu: 'menu_book',
   meal: 'lunch_dining',
