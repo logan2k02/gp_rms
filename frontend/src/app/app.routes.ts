@@ -24,9 +24,9 @@ export const routes: Routes = [
       {
         path: 'reserve',
         loadComponent: () =>
-          import('./features/customer/reserve-table/reserve-table.component').then(
-            (m) => m.ReserveTableComponent
-          ),
+          import(
+            './features/customer/reserve-table/reserve-table.component'
+          ).then((m) => m.ReserveTableComponent),
       },
       {
         path: 'menu',
@@ -95,7 +95,7 @@ export const routes: Routes = [
       },
       {
         path: 'kitchen-manager',
-        canActivate: [staffAuthRequiredGuard(StaffRole.KitchenManager)],
+        // canActivate: [staffAuthRequiredGuard(StaffRole.KitchenManager)],
         children: [
           {
             path: '',

@@ -1,0 +1,51 @@
+<mat-card class="order-card">
+  <mat-card-header>
+    <div mat-card-avatar class="order-avatar">
+      <img src="/images/dummy/profile.jpg" alt="Customer Image" />
+    </div>
+    <mat-card-title>Order #23504</mat-card-title>
+    <mat-card-subtitle>John Doe</mat-card-subtitle>
+  </mat-card-header>
+  <mat-card-content>
+    <div class="details">
+      <h4>Table #20</h4>
+      <h4>10:45 AM</h4>
+    </div>
+    <ul>
+      <li>
+        <div class="order-item">
+          <p>2x</p>
+          <p>Margerita Pizza</p>
+        </div>
+      </li>
+      <li>
+        <div class="order-item">
+          <p>2x</p>
+          <p>Sausage Pizza</p>
+        </div>
+      </li>
+      <li>
+        <div class="order-item">
+          <p>2x</p>
+          <p>Pinneapple Pizza</p>
+        </div>
+      </li>
+      <li>
+        <div class="order-item">
+          <p>2x</p>
+          <p>Double Chicken Pizza</p>
+        </div>
+      </li>
+    </ul>
+    <p class="note"><strong>Note:</strong> Rathu kesel one ayye</p>
+  </mat-card-content>
+  <mat-card-actions>
+    <button
+      mat-flat-button
+      color="accent"
+      (click)="openOrderDetails(orders[0])"
+    >
+      Order Details ↗
+    </button>
+  </mat-card-actions>
+</mat-card>
