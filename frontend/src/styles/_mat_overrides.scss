@@ -33,6 +33,13 @@
     )
   );
 
+  @include mat.card-overrides(
+    (
+      subtitle-text-color: theme.$muted-text-color,
+      subtitle-text-weight: 400,
+    )
+  );
+
   .sidenav {
     @include mat.list-overrides(
       (

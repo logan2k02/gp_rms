@@ -13,12 +13,12 @@ import { MatInputModule } from '@angular/material/input';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { Router } from '@angular/router';
 import { BaseComponent } from '../../../core/base.component';
-import { getEndpointNameForRole } from '../../../core/enums';
 import {
   AlertService,
   GlobalLoadingBarService,
-  StaffUsersService,
+  StaffService,
 } from '../../../core/services';
+import { StaffRoleUtils } from '../../../core/utils';
 @Component({
   selector: 'app-login',
   imports: [
@@ -36,7 +36,7 @@ import {
 export class LoginComponent extends BaseComponent {
   private alertService = inject(AlertService);
   private loadingBar = inject(GlobalLoadingBarService);
-  private staffUsersService = inject(StaffUsersService);
+  private staffService = inject(StaffService);
   private router = inject(Router);
 
   form: FormGroup = new FormGroup({
@@ -73,19 +73,19 @@ export class LoginComponent extends BaseComponent {
     }
 
     const { username, password } = this.form.value;
-    this.sub$.sink = this.staffUsersService
-      .login(username, password)
-      .subscribe({
-        next: ({ user }) => {
-          this.alertService.success(`Welcome ${user.name.split(' ')[0]}!`);
-          this.loadingBar.stopLoading();
-          this.router.navigate(['/staff/' + getEndpointNameForRole(user.role)]);
-        },
-        error: (error) => {
-          this.alertService.error(error);
-          this.loadingBar.stopLoading();
-        },
-      });
+    this.sub$.sink = this.staffService.login(username, password).subscribe({
+      next: ({ user }) => {
+        this.alertService.success(`Welcome ${user.name.split(' ')[0]}!`);
+        this.loadingBar.stopLoading();
+        this.router.navigate([
+          '/staff/' + StaffRoleUtils.getEndpointName(user.role),
+        ]);
+      },
+      error: (error) => {
+        this.alertService.error(error);
+        this.loadingBar.stopLoading();
+      },
+    });
   }
 
   get isLoading() {

@@ -1,11 +1,6 @@
-export enum StaffRole {
-  Admin = 'Admin',
-  Cashier = 'Cashier',
-  Waiter = 'Waiter',
-  KitchenManager = 'KitchenManager',
-}
+import { StaffRole } from '../enums';
 
-class StaffRoleUtils {
+export class StaffRoleUtils {
   static getRoles(): StaffRole[] {
     return Object.values(StaffRole);
   }
@@ -14,7 +9,7 @@ class StaffRoleUtils {
     return Object.values(StaffRole).includes(role as StaffRole);
   }
 
-  getEndpointName(role: StaffRole): string {
+  static getEndpointName(role: StaffRole): string {
     switch (role) {
       case StaffRole.Admin:
         return 'admin';
@@ -27,7 +22,7 @@ class StaffRoleUtils {
     }
   }
 
-  getName(role: StaffRole): string {
+  static getName(role: StaffRole): string {
     switch (role) {
       case StaffRole.Admin:
         return 'Admin';

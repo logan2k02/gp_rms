@@ -35,12 +35,6 @@ export class AuthService {
 
     const passwordOkay = await argon.verify(user.passwordHash, dto.password);
     if (!passwordOkay) {
-      await this.db.staffMemberActivity.create({
-        data: {
-          staffMemberId: user.id,
-          activity: `Failed attempt to login with ip address ${ipAddress}`,
-        },
-      });
       throw new UnauthorizedException('Invalid password provided');
     }
 
@@ -49,7 +43,7 @@ export class AuthService {
       username: user.username,
     };
 
-    await this.db.staffMemberActivity.create({
+    await this.db.staffActivityLog.create({
       data: {
         staffMemberId: user.id,
         activity: `Logged in successfully with ip address ${ipAddress}`,

@@ -4,6 +4,7 @@ import {
   staffAuthNotRequiredGuard,
   staffAuthRequiredGuard,
 } from './core/guards';
+import { auditLogsResolver } from './features/staff/admin/manage-staff/audit-logs/audit-logs.resolver';
 import { membersListResolver } from './features/staff/admin/manage-staff/members-list/members-list.resolver';
 import { updateMemberResolver } from './features/staff/admin/manage-staff/update-member/update-member.resolver';
 
@@ -116,6 +117,9 @@ export const routes: Routes = [
                   import(
                     './features/staff/admin/manage-staff/audit-logs/audit-logs.component'
                   ).then((m) => m.AuditLogsComponent),
+                resolve: {
+                  data: auditLogsResolver,
+                },
               },
             ],
           },

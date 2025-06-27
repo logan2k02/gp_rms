@@ -1,6 +1,6 @@
-<mat-card appearance="outlined">
+<mat-card>
   <mat-card-header class="mat-card-header">
-    <mat-card-title> Manage Staff Users</mat-card-title>
+    <mat-card-title>Manage Staff Users</mat-card-title>
     <a
       routerLink="/staff/admin/manage-staff/new"
       mat-flat-button
@@ -36,33 +36,35 @@
       <!-- Position Column -->
       <ng-container matColumnDef="role">
         <th mat-header-cell *matHeaderCellDef>Role</th>
-        <td mat-cell *matCellDef="let element">{{ element.role }}</td>
+        <td mat-cell *matCellDef="let user">
+          {{ getRoleName(user.role) }}
+        </td>
       </ng-container>
 
       <!-- Name Column -->
       <ng-container matColumnDef="name">
         <th mat-header-cell *matHeaderCellDef>Name</th>
-        <td mat-cell *matCellDef="let element">{{ element.name }}</td>
+        <td mat-cell *matCellDef="let user">{{ user.name }}</td>
       </ng-container>
 
       <!-- Weight Column -->
       <ng-container matColumnDef="username">
         <th mat-header-cell *matHeaderCellDef>Username</th>
-        <td mat-cell *matCellDef="let element">
+        <td mat-cell *matCellDef="let user">
           <span
             role="button"
             style="text-decoration: underline; cursor: pointer"
-            (click)="copyUsername(element.username)"
+            (click)="copyUsername(user.username)"
             matTooltip="Click to copy username"
           >
-            {{ element.username }}
+            {{ user.username }}
           </span>
         </td>
       </ng-container>
 
       <ng-container matColumnDef="actions">
         <th mat-header-cell *matHeaderCellDef>Actions</th>
-        <td mat-cell *matCellDef="let element">
+        <td mat-cell *matCellDef="let user">
           <button
             mat-icon-button
             [matMenuTriggerFor]="menu"
@@ -73,23 +75,20 @@
           <mat-menu #menu="matMenu">
             <a
               mat-menu-item
-              [routerLink]="[
-                '/staff/admin/manage-staff/audit-logs',
-                element.id
-              ]"
+              [routerLink]="['/staff/admin/manage-staff/audit-logs', user.id]"
             >
               <mat-icon>{{ getAppIcon("history") }}</mat-icon>
-              <span>Audit Logs</span>
+              <span>Activity Logs</span>
             </a>
             <a
               mat-menu-item
-              [routerLink]="['/staff/admin/manage-staff/update', element.id]"
+              [routerLink]="['/staff/admin/manage-staff/update', user.id]"
             >
-              <mat-icon>{{ getAppIcon("delete") }}</mat-icon>
+              <mat-icon>{{ getAppIcon("edit") }}</mat-icon>
               <span>Update Account</span>
             </a>
-            <button mat-menu-item (click)="deleteAccount(element.id)">
-              <mat-icon>{{ getAppIcon("edit") }}</mat-icon>
+            <button mat-menu-item (click)="deleteAccount(user)">
+              <mat-icon>{{ getAppIcon("delete") }}</mat-icon>
               <span>Delete Account</span>
             </button>
           </mat-menu>

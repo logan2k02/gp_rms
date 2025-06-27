@@ -5,17 +5,17 @@ import { StaffUser } from '../../../../../core/interfaces';
 import {
   AlertService,
   GlobalLoadingBarService,
-  StaffUsersService,
+  StaffService,
 } from '../../../../../core/services';
 
 export const membersListResolver: ResolveFn<StaffUser[]> = (route, state) => {
-  const staffUsersService = inject(StaffUsersService);
+  const staffService = inject(StaffService);
   const alertService = inject(AlertService);
   const globalLoadingBar = inject(GlobalLoadingBarService);
 
   return new Observable<StaffUser[]>((observer) => {
     globalLoadingBar.startLoading();
-    const sub = staffUsersService.getAllUsers().subscribe({
+    const sub = staffService.getAllUsers().subscribe({
       next: (res) => {
         observer.next(res);
         observer.complete();

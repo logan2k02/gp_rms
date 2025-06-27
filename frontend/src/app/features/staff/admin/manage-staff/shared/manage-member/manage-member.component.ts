@@ -13,13 +13,14 @@ import { MatInputModule } from '@angular/material/input';
 import { MatSelectModule } from '@angular/material/select';
 import { ActivatedRoute, Router } from '@angular/router';
 import { BaseComponent } from '../../../../../../core/base.component';
-import { getNameForRole, StaffRole } from '../../../../../../core/enums';
+import { StaffRole } from '../../../../../../core/enums';
 import { StaffUser } from '../../../../../../core/interfaces';
 import {
   AlertService,
   GlobalLoadingBarService,
-  StaffUsersService,
+  StaffService,
 } from '../../../../../../core/services';
+import { StaffRoleUtils } from '../../../../../../core/utils';
 
 @Component({
   selector: 'staff-admin-manage-member',
@@ -38,14 +39,14 @@ import {
 export class ManageMemberComponent extends BaseComponent implements OnInit {
   private activatedRoute = inject(ActivatedRoute);
   private globalLoadingBar = inject(GlobalLoadingBarService);
-  private staffUsersService = inject(StaffUsersService);
+  private staffService = inject(StaffService);
   private alertService = inject(AlertService);
   private router = inject(Router);
 
   editingUser: StaffUser | null = null;
 
   readonly roles = Object.keys(StaffRole).map((key) => ({
-    label: getNameForRole(key as StaffRole),
+    label: StaffRoleUtils.getName(key as StaffRole),
     value: key,
   }));
 
@@ -115,24 +116,24 @@ export class ManageMemberComponent extends BaseComponent implements OnInit {
     };
     let action;
     if (this.editingUser) {
-      action = this.staffUsersService.updateUser(user);
+      action = this.staffService.updateUser(user);
     } else {
-      action = this.staffUsersService.createUser(user);
+      action = this.staffService.createUser(user);
     }
 
     this.sub$.sink = action.subscribe({
       next: () => {
         this.globalLoadingBar.stopLoading();
+        this.alertService.success(
+          `Staff member ${
+            this.editingUser ? 'updated' : 'created'
+          } successfully.`
+        );
         this.goBack();
       },
       error: (err) => {
         this.globalLoadingBar.stopLoading();
-
-        this.alertService.error(
-          `Failed to ${
-            this.editingUser ? 'update' : 'create'
-          }  user due to an error.`
-        );
+        this.alertService.error(err);
       },
     });
   }

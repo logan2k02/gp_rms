@@ -7,12 +7,9 @@ import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { Router, RouterModule } from '@angular/router';
 import { BaseComponent } from '../../../core/base.component';
-import {
-  getEndpointNameForRole,
-  getNameForRole,
-  StaffRole,
-} from '../../../core/enums';
-import { AlertService, StaffUsersService } from '../../../core/services';
+import { StaffRole } from '../../../core/enums';
+import { AlertService, StaffService } from '../../../core/services';
+import { StaffRoleUtils } from '../../../core/utils';
 
 interface NavLink {
   icon: string;
@@ -36,16 +33,16 @@ interface NavLink {
   styleUrl: './layout.component.scss',
 })
 export class LayoutComponent extends BaseComponent {
-  private staffUsersService = inject(StaffUsersService);
+  private staffService = inject(StaffService);
   private router = inject(Router);
   private alertService = inject(AlertService);
 
   get user() {
-    return this.staffUsersService.auth?.user;
+    return this.staffService.auth?.user;
   }
 
   get role() {
-    return this.user ? getNameForRole(this.user.role) : 'Staff';
+    return this.user ? StaffRoleUtils.getName(this.user.role) : 'Staff';
   }
 
   login() {
@@ -53,7 +50,7 @@ export class LayoutComponent extends BaseComponent {
   }
 
   logout() {
-    this.sub$.sink = this.staffUsersService.logout().subscribe({
+    this.sub$.sink = this.staffService.logout().subscribe({
       next: () => {
         this.router.navigate(['staff', 'login']);
       },
@@ -76,7 +73,8 @@ export class LayoutComponent extends BaseComponent {
       ];
     }
 
-    const roleEndPoint = '/staff/' + getEndpointNameForRole(this.user.role);
+    const roleEndPoint =
+      '/staff/' + StaffRoleUtils.getEndpointName(this.user.role);
 
     const links: NavLink[] = [];
     links.push({

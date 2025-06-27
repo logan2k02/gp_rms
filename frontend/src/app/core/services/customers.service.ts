@@ -6,7 +6,7 @@ import { AuthState, BaseAuthService } from './base-auth.service';
 @Injectable({
   providedIn: 'root',
 })
-export class CustomerAuthService extends BaseAuthService<Customer> {
+export class CustomersService extends BaseAuthService<Customer> {
   refresh() {
     return this._refresh('customer');
   }
