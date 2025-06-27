@@ -78,3 +78,9 @@ $mat-icon-sizes: (
 mat-icon {
   color: inherit !important;
 }
+
+.no-items {
+  text-align: center;
+  font-style: italic;
+  padding: 1rem;
+}

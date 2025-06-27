@@ -8,10 +8,16 @@ import { MatMenuModule } from '@angular/material/menu';
 import { MatTableDataSource, MatTableModule } from '@angular/material/table';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { ActivatedRoute, RouterModule } from '@angular/router';
+import { filter } from 'rxjs';
 import { BaseComponent } from '../../../../../core/base.component';
 import { StaffRole } from '../../../../../core/enums';
 import { StaffUser } from '../../../../../core/interfaces';
-import { AlertService } from '../../../../../core/services';
+import {
+  AlertService,
+  GlobalLoadingBarService,
+  StaffService,
+} from '../../../../../core/services';
+import { StaffRoleUtils } from '../../../../../core/utils';
 
 @Component({
   selector: 'app-home',
@@ -32,6 +38,8 @@ export class MembersListComponent extends BaseComponent implements OnInit {
   private activatedRoute = inject(ActivatedRoute);
   private clipboard = inject(Clipboard);
   private alertService = inject(AlertService);
+  private staffService = inject(StaffService);
+  private globalLoadingBar = inject(GlobalLoadingBarService);
 
   readonly roles = [
     {
@@ -81,10 +89,48 @@ export class MembersListComponent extends BaseComponent implements OnInit {
     }
   }
 
+  getRoleName(role: string) {
+    return StaffRoleUtils.getName(role as StaffRole);
+  }
+
   copyUsername(username: string): void {
     this.clipboard.copy(username);
     this.alertService.success(`Username "${username}" copied to clipboard.`);
   }
 
-  deleteAccount(memberId: string) {}
+  deleteAccount(user: StaffUser) {
+    this.sub$.sink = this.alertService
+      .confirm({
+        title: `Are you sure?`,
+        message: `You are going to delete the ${StaffRoleUtils.getName(
+          user.role
+        )} account of ${user.name}. This action cannot be undone.`,
+        confirmButtonText: 'Delete',
+        cancelButtonText: 'Cancel',
+      })
+      .pipe(filter((confirmed) => confirmed))
+      .subscribe({
+        next: () => {
+          this.globalLoadingBar.startLoading();
+          this.sub$.sink = this.staffService.deleteUser(user.id).subscribe({
+            next: () => {
+              this.membersList = this.membersList.filter(
+                (member) => member.id !== user.id
+              );
+              this.dataSource.data = this.membersList;
+              this.alertService.success(
+                `${StaffRoleUtils.getName(user.role)} account of ${
+                  user.name
+                } deleted successfully.`
+              );
+              this.globalLoadingBar.stopLoading();
+            },
+            error: (err) => {
+              this.alertService.error(err);
+              this.globalLoadingBar.stopLoading();
+            },
+          });
+        },
+      });
+  }
 }

@@ -1,14 +1,14 @@
 import { inject } from '@angular/core';
 import { CanActivateFn, Router } from '@angular/router';
-import { AlertService, CustomerAuthService, LoggerService } from '../services';
+import { AlertService, CustomersService, LoggerService } from '../services';
 
 export const customerAuthNotRequiredGuard: () => CanActivateFn = () => () => {
-  const authService = inject(CustomerAuthService);
+  const customersService = inject(CustomersService);
   const logger = inject(LoggerService);
   const router = inject(Router);
   const alertService = inject(AlertService);
 
-  if (authService.auth) {
+  if (customersService.auth) {
     logger.warn(
       'authNotRequiredGuard',
       'User is already authenticated, redirecting...'
