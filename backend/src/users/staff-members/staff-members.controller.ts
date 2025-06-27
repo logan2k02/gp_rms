@@ -5,8 +5,8 @@ import {
   Get,
   Param,
   ParseIntPipe,
+  Patch,
   Post,
-  Put,
 } from '@nestjs/common';
 import { StaffMember, StaffRole } from '@prisma/client';
 import {
@@ -15,6 +15,8 @@ import {
   StaffMemberAuthFromRequest,
 } from 'src/auth/decorators';
 import { RequestAuth } from 'src/auth/interfaces';
+import { PaginationParam } from 'src/common/decorators';
+import { Pagination } from 'src/common/interfaces';
 import { CreateStaffMemberDto, UpdateStaffMemberDto } from './dto';
 import { StaffMembersService } from './staff-members.service';
 
@@ -35,8 +37,11 @@ export class StaffMembersController {
 
   @AllowOnlyStaffMembers(StaffRole.Admin)
   @Post('accounts')
-  create(@Body() createStaffMemberDto: CreateStaffMemberDto) {
-    return this.staffMembersService.create(createStaffMemberDto);
+  create(
+    @Body() createStaffMemberDto: CreateStaffMemberDto,
+    @StaffMemberAuthFromRequest() auth: RequestAuth<StaffMember>,
+  ) {
+    return this.staffMembersService.create(createStaffMemberDto, auth.user?.id);
   }
 
   @AllowOnlyStaffMembers(StaffRole.Admin)
@@ -52,41 +57,70 @@ export class StaffMembersController {
   }
 
   @AllowOnlyStaffMembers(StaffRole.Admin)
-  @Put('accounts/:id')
+  @Patch('accounts/:id')
   update(
     @Param('id', ParseIntPipe) id: number,
     @Body() updateStaffMemberDto: UpdateStaffMemberDto,
+    @StaffMemberAuthFromRequest() auth: RequestAuth<StaffMember>,
   ) {
-    return this.staffMembersService.update(id, updateStaffMemberDto);
+    return this.staffMembersService.update(
+      id,
+      updateStaffMemberDto,
+      auth.user?.id,
+    );
   }
 
   @AllowOnlyStaffMembers(StaffRole.Admin)
   @Delete('accounts/:id')
-  remove(@Param('id', ParseIntPipe) id: number) {
-    return this.staffMembersService.remove(id);
-  }
-
-  @AllowOnlyStaffMembers()
-  @Get('profile')
-  getProfile(@StaffMemberAuthFromRequest() auth: RequestAuth<StaffMember>) {
-    return this.staffMembersService.findOne(auth.user?.id!);
-  }
-
-  @AllowOnlyStaffMembers()
-  @Put('profile')
-  updateProfile(
+  remove(
+    @Param('id', ParseIntPipe) id: number,
     @StaffMemberAuthFromRequest() auth: RequestAuth<StaffMember>,
-    @Body() updateStaffMemberDto: UpdateStaffMemberDto,
   ) {
-    return this.staffMembersService.update(
-      auth.user?.id!,
-      updateStaffMemberDto,
-    );
+    return this.staffMembersService.remove(id, auth.user?.id);
   }
 
-  @AllowOnlyStaffMembers()
-  @Delete('profile')
-  removeProfile(@StaffMemberAuthFromRequest() auth: RequestAuth<StaffMember>) {
-    return this.staffMembersService.remove(auth.user?.id!);
+  @AllowOnlyStaffMembers(StaffRole.Admin)
+  @Get('accounts/:id/activity-logs')
+  getActivityLogs(
+    @Param('id', ParseIntPipe) id: number,
+    @PaginationParam() pagination: Pagination,
+  ) {
+    console.log(pagination);
+
+    return this.staffMembersService.getActivityLogs(id, pagination);
   }
+
+  @AllowOnlyStaffMembers(StaffRole.Admin)
+  @Delete('accounts/:id/activity-logs')
+  clearActivityLogs(
+    @Param('id', ParseIntPipe) id: number,
+    @StaffMemberAuthFromRequest() auth: RequestAuth<StaffMember>,
+  ) {
+    return this.staffMembersService.clearActivityLogs(id, auth.user?.id);
+  }
+
+  // @AllowOnlyStaffMembers()
+  // @Get('profile')
+  // getProfile(@StaffMemberAuthFromRequest() auth: RequestAuth<StaffMember>) {
+  //   return this.staffMembersService.findOne(auth.user?.id!);
+  // }
+
+  // @AllowOnlyStaffMembers()
+  // @Patch('profile')
+  // updateProfile(
+  //   @StaffMemberAuthFromRequest() auth: RequestAuth<StaffMember>,
+  //   @Body() updateStaffMemberDto: UpdateStaffMemberDto,
+  // ) {
+  //   return this.staffMembersService.update(
+  //     auth.user?.id!,
+  //     updateStaffMemberDto,
+  //     auth.user?.id!,
+  //   );
+  // }
+
+  // @AllowOnlyStaffMembers()
+  // @Delete('profile')
+  // removeProfile(@StaffMemberAuthFromRequest() auth: RequestAuth<StaffMember>) {
+  //   return this.staffMembersService.remove(auth.user?.id!);
+  // }
 }

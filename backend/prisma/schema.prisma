@@ -29,14 +29,14 @@ model StaffMember {
   name String
 
   role                  StaffRole
-  StaffMemberActivities StaffMemberActivity[]
+  StaffMemberActivities StaffActivityLog[]
 }
 
-model StaffMemberActivity {
+model StaffActivityLog {
   id Int @id @default(autoincrement())
 
   staffMemberId Int
-  staffMember   StaffMember @relation(fields: [staffMemberId], references: [id])
+  staffMember   StaffMember @relation(fields: [staffMemberId], references: [id], onDelete: Cascade, onUpdate: Cascade)
 
   activity String
 
