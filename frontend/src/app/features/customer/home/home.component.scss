@@ -4,14 +4,14 @@
 
 #hero {
   color: white;
-  min-height: 86vh;
+  min-height: 90vh;
   background: linear-gradient(
     90deg,
     rgba(0, 0, 0, 0.8) 30%,
     rgba(0, 0, 0, 0) 70%
   );
   position: relative;
-
+  
   .bg {
     position: absolute;
     left: 0;
@@ -53,7 +53,7 @@
       align-items: center;
       max-width: 40rem;
       margin: auto 0;
-      padding-top: 15vh;
+      padding-top: 20vh;
       padding-bottom: 4rem;
       color: map.get(theme.$primary-palette, 99);
       text-align: center;

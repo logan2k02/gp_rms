@@ -10,7 +10,7 @@ import {
 } from '@angular/core';
 
 import { MatButtonModule } from '@angular/material/button';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, RouterModule } from '@angular/router';
 import { BaseComponent } from '../../../core/base.component';
 import { OfferCardComponent } from '../shared/offer-card/offer-card.component';
 import { OfferCardStaticComponent } from '../shared/offer-card-static/offer-card-static.component';
@@ -24,6 +24,7 @@ import { TestimonialCardComponent } from '../shared/testimonial-card/testimonial
     OfferCardStaticComponent,
     TestimonialCardComponent,
     MatButtonModule,
+    RouterModule
   ],
   templateUrl: './home.component.html',
   styleUrl: './home.component.scss',

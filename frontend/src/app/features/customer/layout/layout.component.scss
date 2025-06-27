@@ -3,11 +3,11 @@
 @use "sass:map";
 
 header {
-  background-color: theme.$primary-invert-color;
+  background-color: white;
   color: theme.$primary-color;
   position: sticky;
   top: 0;
-  height: 56px;
+  height: 10vh;
   z-index: 50;
 
   .content {

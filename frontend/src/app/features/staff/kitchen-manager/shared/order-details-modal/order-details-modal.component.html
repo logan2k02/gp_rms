@@ -1,0 +1,17 @@
+<h2 mat-dialog-title>Order #{{ data.order.id }}</h2>
+<mat-dialog-content>
+  <p><strong>Waiter:</strong> {{ data.order.name }}</p>
+  <p><strong>Table:</strong> {{ data.order.table }}</p>
+  <p><strong>Time:</strong> {{ data.order.time }}</p>
+
+  <ul>
+    <li *ngFor="let item of data.order.items">
+      {{ item }}
+    </li>
+  </ul>
+
+  <p *ngIf="data.order.note"><strong>Note:</strong> {{ data.order.note }}</p>
+</mat-dialog-content>
+<mat-dialog-actions align="end">
+  <button mat-flat-button mat-dialog-close>Close</button>
+</mat-dialog-actions>

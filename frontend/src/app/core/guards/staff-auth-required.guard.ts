@@ -1,17 +1,18 @@
 import { inject } from '@angular/core';
 import { CanActivateFn, Router } from '@angular/router';
-import { getEndpointNameForRole, StaffRole } from '../enums';
-import { AlertService, LoggerService, StaffAuthService } from '../services';
+import { StaffRole } from '../enums';
+import { AlertService, LoggerService, StaffService } from '../services';
+import { StaffRoleUtils } from '../utils';
 
 export const staffAuthRequiredGuard =
   (...roles: StaffRole[]): CanActivateFn =>
   () => {
-    const authService = inject(StaffAuthService);
+    const staffService = inject(StaffService);
     const logger = inject(LoggerService);
     const router = inject(Router);
     const alertService = inject(AlertService);
 
-    if (!authService.auth) {
+    if (!staffService.auth) {
       logger.warn(
         'authRequiredGuard',
         'User is not authenticated, redirecting to login page'
@@ -22,19 +23,19 @@ export const staffAuthRequiredGuard =
       return false;
     }
 
-    if (!roles.includes(authService.auth.user.role)) {
+    if (!roles.includes(staffService.auth.user.role)) {
       logger.warn(
         'authRequiredGuard',
         'User does not have permission to access that page',
         {
           allowed: roles,
-          role: authService.auth.user.role,
+          role: staffService.auth.user.role,
         }
       );
       alertService.error('You do not have permission to access that page.');
 
       router.navigateByUrl(
-        '/staff/' + getEndpointNameForRole(authService.auth.user.role)
+        '/staff/' + StaffRoleUtils.getEndpointName(staffService.auth.user.role)
       );
       return false;
     }

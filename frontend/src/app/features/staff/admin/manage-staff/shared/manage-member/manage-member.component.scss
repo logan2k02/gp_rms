@@ -1,0 +1,16 @@
+.card {
+  max-width: 30rem;
+  width: 100%;
+  margin: 0 auto;
+}
+
+button[type="submit"] {
+  margin-right: 0.5rem;
+  margin-left: auto;
+}
+
+.form-fields {
+  display: grid;
+  gap: 0.4rem;
+  padding-top: 2rem;
+}

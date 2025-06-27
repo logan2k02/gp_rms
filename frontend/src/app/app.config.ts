@@ -18,19 +18,15 @@ import {
 import { catchError, combineLatest, of } from 'rxjs';
 import { routes } from './app.routes';
 import { HttpInterceptor } from './core/inteceptors';
-import {
-  CustomerAuthService,
-  LoggerService,
-  StaffAuthService,
-} from './core/services';
+import { CustomersService, LoggerService, StaffService } from './core/services';
 import { AppTitleStrategy } from './core/strategies';
 
 const initAuth = () => {
-  const staffAuthService = inject(StaffAuthService);
-  const customerAuthService = inject(CustomerAuthService);
+  const staffService = inject(StaffService);
+  const customersService = inject(CustomersService);
   const logger = inject(LoggerService);
 
-  const staffAction = staffAuthService.refresh().pipe(
+  const staffAction = staffService.refresh().pipe(
     catchError((err) => {
       logger.warn(
         'AppInitializer',
@@ -41,7 +37,7 @@ const initAuth = () => {
     })
   );
 
-  const customerAction = customerAuthService.refresh().pipe(
+  const customerAction = customersService.refresh().pipe(
     catchError((err) => {
       logger.warn(
         'AppInitializer',

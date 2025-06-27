@@ -1,0 +1,37 @@
+<section id="hero">
+  <div class="bg">
+    <img src="/images/menu/background.avif" alt="Background" />
+  </div>
+
+  <div class="container">
+    <div class="content">
+      <h1>Explore Our Menu</h1>
+      <p class="description">
+        Discover a curated selection of exquisite dishes crafted to delight your
+        palate.
+      </p>
+      <div class="hero-buttons">
+        <a routerLink="/menu" fragment="menu-section">
+          <button class="btn" mat-flat-button>View</button>
+        </a>
+        <a routerLink="/reserve">
+          <button class="btn" mat-raised-button>Reserve</button>
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="menu-section">
+  <div class="container">
+    <h2>Select your items</h2>
+    <div class="grid">
+      <app-menu-item></app-menu-item>
+      <app-menu-item></app-menu-item>
+      <app-menu-item></app-menu-item>
+      <app-menu-item></app-menu-item>
+      <app-menu-item></app-menu-item>
+      <app-menu-item></app-menu-item>
+    </div>
+  </div>
+</section>

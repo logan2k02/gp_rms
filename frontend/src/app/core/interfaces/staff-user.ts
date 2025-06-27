@@ -5,7 +5,6 @@ export interface StaffUser {
   username: string;
   name: string;
   role: StaffRole;
+  passwordHash?: string;
   password?: string;
-  createdAt: Date;
-  updatedAt: Date;
 }

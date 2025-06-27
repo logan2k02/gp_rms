@@ -6,9 +6,9 @@ import { environment } from '../../../environments/environment';
 import { CommonError, Customer, StaffUser } from '../interfaces';
 import {
   AlertService,
-  CustomerAuthService,
+  CustomersService,
   LoggerService,
-  StaffAuthService,
+  StaffService,
 } from '../services';
 import { AuthState } from '../services/base-auth.service';
 
@@ -48,8 +48,8 @@ const getErrorDetails = (err: any): CommonError => {
 
 export const HttpInterceptor: HttpInterceptorFn = (request, next) => {
   const router = inject(Router);
-  const staffAuthService = inject(StaffAuthService);
-  const customerAuthService = inject(CustomerAuthService);
+  const staffService = inject(StaffService);
+  const customersService = inject(CustomersService);
   const alertService = inject(AlertService);
   const logger = inject(LoggerService);
 
@@ -68,7 +68,7 @@ export const HttpInterceptor: HttpInterceptorFn = (request, next) => {
   let authReq = req.clone({
     withCredentials: true,
   });
-  const auth = isStaff ? staffAuthService.auth : customerAuthService.auth;
+  const auth = isStaff ? staffService.auth : customersService.auth;
   if (auth) {
     authReq = authReq.clone({
       setHeaders: {
@@ -90,8 +90,8 @@ export const HttpInterceptor: HttpInterceptorFn = (request, next) => {
           '401 error detected. Trying to refresh token...'
         );
         const action = isStaff
-          ? staffAuthService.refresh()
-          : customerAuthService.refresh();
+          ? staffService.refresh()
+          : customersService.refresh();
         // refresh token
         return (action as Observable<AuthState<Customer | StaffUser>>).pipe(
           switchMap((newAuth) => {

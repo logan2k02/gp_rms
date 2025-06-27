@@ -139,7 +139,10 @@ $_rest: (
 );
 
 $primary-palette: map.merge(map.get($_palettes, primary), $_rest);
+$secondary-palette: map.merge(map.get($_palettes, secondary), $_rest);
 $tertiary-palette: map.merge(map.get($_palettes, tertiary), $_rest);
 
 $primary-color: map.get($primary-palette, 40);
 $primary-invert-color: map.get($primary-palette, 99);
+
+$muted-text-color: map.get($secondary-palette, 30);

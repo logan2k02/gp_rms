@@ -6,8 +6,6 @@
     (
       active-indicator-color: theme.$primary-invert-color,
       track-color: theme.$primary-color,
-      track-height: 3px,
-      active-indicator-height: 3px,
     )
   );
 
@@ -32,6 +30,13 @@
     (
       list-item-leading-icon-color: theme.$primary-invert-color,
       list-item-hover-leading-icon-color: theme.$primary-invert-color,
+    )
+  );
+
+  @include mat.card-overrides(
+    (
+      subtitle-text-color: theme.$muted-text-color,
+      subtitle-text-weight: 400,
     )
   );
 
