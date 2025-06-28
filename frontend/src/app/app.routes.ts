@@ -162,6 +162,13 @@ export const routes: Routes = [
                 (m) => m.HomeComponent
               ),
           },
+          {
+            path: 'order-details/:id',
+            loadComponent: () =>
+              import('./features/staff/waiter/order-details/order-details.component').then(
+                (m) => m.OrderDetailsComponent
+              ),
+          },
         ],
       },
     ],

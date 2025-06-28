@@ -1,1 +1,65 @@
-<p>waiter home works!</p>
+<div class="waiter-dashboard">
+    <div class="page-header">
+        <h1 class="page-title">Table Status</h1>
+        <div class="dashboard-stats">
+            <div class="stat">
+                <span class="stat-number">{{ tablesWithOrders() }}</span>
+                <span class="stat-label">Active Orders</span>
+            </div>
+            <div class="stat">
+                <span class="stat-number">{{ totalActiveOrders() }}</span>
+                <span class="stat-label">Total Orders</span>
+            </div>
+            <div class="stat">
+                <span class="stat-number">{{ freeTables() }}</span>
+                <span class="stat-label">Free Tables</span>
+            </div>
+        </div>
+    </div>
+
+    <div class="tables-grid">
+        @for (table of tables(); track table.id) {
+        <div class="table-card" [class.has-orders]="table.activeOrders > 0"
+            [class.free-table]="table.activeOrders === 0" [attr.data-priority]="getTablePriority(table)"
+            (click)="onTableClick(table)" (keydown.enter)="onTableClick(table)" (keydown.space)="onTableClick(table)"
+            role="button" tabindex="0"
+            [attr.aria-label]="table.activeOrders > 0 ? 'Table ' + table.id + ' with ' + table.activeOrders + ' active orders' : 'Table ' + table.id + ' is free'">
+            <div class="table-content">
+                <div class="table-number">{{ table.id }}</div>
+                @if (table.activeOrders > 0) {
+                <div class="order-badge" [matBadge]="table.activeOrders" matBadgeColor="warn">
+                </div>
+                }
+            </div>
+        </div>
+        }
+    </div>
+
+    <!-- Simplified Legend (desktop only) -->
+    <div class="table-legend">
+        <div class="legend-item">
+            <div class="legend-color free"></div>
+            <span>Free Tables</span>
+        </div>
+        <div class="legend-item">
+            <div class="legend-color active"></div>
+            <span>Active Orders</span>
+        </div>
+    </div>
+
+    <!-- Mobile Bottom Navigation -->
+    <nav class="bottom-nav" role="navigation" aria-label="Main navigation">
+        <button class="nav-item active" aria-label="Home - Current page" aria-current="page">
+            <mat-icon>{{ getAppIcon("home") }}</mat-icon>
+            <span>Home</span>
+        </button>
+        <button class="nav-item" aria-label="Orders">
+            <mat-icon>{{ getAppIcon("food_menu") }}</mat-icon>
+            <span>Orders</span>
+        </button>
+        <button class="nav-item" aria-label="Profile">
+            <mat-icon>{{ getAppIcon("user") }}</mat-icon>
+            <span>Profile</span>
+        </button>
+    </nav>
+</div>

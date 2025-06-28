@@ -1,0 +1,113 @@
+<div class="order-details-page">
+    <!-- Loading State -->
+    @if (isLoading()) {
+    <div class="loading-container">
+        <div class="loading-spinner"></div>
+        <p>Loading table details...</p>
+    </div>
+    }
+
+    <!-- Main Content -->
+    @if (tableDetails() && !isLoading()) {
+
+    <!-- Page Header with Table Info -->
+    <div class="page-header">
+        <div class="header-content">
+            <button class="back-button" (click)="onBackClick()" aria-label="Go back to table status">
+                <mat-icon>{{ getAppIcon("close") }}</mat-icon>
+            </button>
+
+            <div class="table-info">
+                <h1 class="table-title">Table</h1>
+                <div class="table-badge">{{ tableDetails()!.id }}</div>
+            </div>
+
+            <button class="refresh-button" (click)="onRefresh()" aria-label="Refresh orders">
+                <mat-icon>refresh</mat-icon>
+            </button>
+        </div>
+
+        <!-- Order Statistics -->
+        <div class="order-stats">
+            <div class="stat-item">
+                <span class="stat-number">{{ newOrders() }}</span>
+                <span class="stat-label">New</span>
+            </div>
+            <div class="stat-item">
+                <span class="stat-number">{{ preparingOrders() }}</span>
+                <span class="stat-label">Preparing</span>
+            </div>
+            <div class="stat-item">
+                <span class="stat-number">{{ readyOrders() }}</span>
+                <span class="stat-label">Ready</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- Order Items Section -->
+    <div class="order-items-section">
+        <h2 class="section-title">Order Items</h2>
+
+        <div class="orders-list">
+            @for (order of tableDetails()!.orders; track order.id) {
+            <div class="order-card" [class]="'priority-' + order.priority" (click)="onOrderClick(order)"
+                (keydown.enter)="onOrderClick(order)" (keydown.space)="onOrderClick(order)" role="button" tabindex="0"
+                [attr.aria-label]="'Order: ' + order.items + ', Status: ' + getStatusInfo(order.status).label">
+
+                <!-- Order Status Badge -->
+                <div class="order-status" [class]="getStatusInfo(order.status).class">
+                    <mat-icon class="status-icon">{{ getStatusInfo(order.status).icon }}</mat-icon>
+                    <span class="status-label">{{ getStatusInfo(order.status).label }}</span>
+                </div>
+
+                <!-- Order Content -->
+                <div class="order-content">
+                    <div class="order-summary">
+                        <p class="order-items">{{ order.items }}</p>
+                    </div>
+
+                    <div class="order-meta">
+                        <span class="order-time" [title]="'Ordered at ' + order.timestamp">
+                            {{ order.timeAgo }}
+                        </span>
+                    </div>
+                </div>
+
+                <!-- Order Priority Indicator (for ready orders) -->
+                @if (order.status === 'ready') {
+                <div class="priority-indicator" aria-label="High priority - meal ready for pickup">
+                    <mat-icon>priority_high</mat-icon>
+                </div>
+                }
+            </div>
+            }
+        </div>
+
+        <!-- Empty State -->
+        @if (tableDetails()!.orders.length === 0) {
+        <div class="empty-state">
+            <mat-icon class="empty-icon">restaurant</mat-icon>
+            <h3>No Active Orders</h3>
+            <p>This table currently has no active orders.</p>
+        </div>
+        }
+    </div>
+
+    }
+
+    <!-- Mobile Bottom Navigation -->
+    <nav class="bottom-nav" role="navigation" aria-label="Main navigation">
+        <button class="nav-item" aria-label="Home" (click)="onBackClick()">
+            <mat-icon>{{ getAppIcon("home") }}</mat-icon>
+            <span>Home</span>
+        </button>
+        <button class="nav-item active" aria-label="Orders - Current page" aria-current="page">
+            <mat-icon>{{ getAppIcon("food_menu") }}</mat-icon>
+            <span>Orders</span>
+        </button>
+        <button class="nav-item" aria-label="Profile">
+            <mat-icon>{{ getAppIcon("user") }}</mat-icon>
+            <span>Profile</span>
+        </button>
+    </nav>
+</div>
