@@ -146,11 +146,11 @@ export const routes: Routes = [
               ).then((m) => m.HomeComponent),
           },
           {
-            path: 'archived-orders',
+            path: 'orders',
             loadComponent: () =>
               import(
-                './features/staff/kitchen-manager/home/home.component'
-              ).then((m) => m.HomeComponent),
+                './features/staff/kitchen-manager/orders/orders.component'
+              ).then((m) => m.OrdersComponent),
           },
           {
             path: 'meals',
