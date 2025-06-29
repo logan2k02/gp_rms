@@ -1,0 +1,50 @@
+.meal-dashboard {
+  display: flex;
+  height: calc(100vh - 56px);
+  position: fixed;
+  width: 100%;
+
+  .content {
+    flex: 1;
+    overflow-y: auto;
+
+    h2 {
+      margin-bottom: 1.5rem;
+      font-size: 1.8rem;
+      position: sticky;
+      top: 0;
+      padding: 1rem 2rem;
+      background-color: rgba(255, 255, 255, 0.8);
+      backdrop-filter: blur(10px);
+      z-index: 10;
+    }
+
+    .category {
+      margin-bottom: 2rem;
+      padding: 0rem 2rem;
+
+      .category-header {
+        margin-bottom: 1rem;
+
+        h3 {
+          font-size: 1.2rem;
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+
+          .count {
+            font-size: 0.9rem;
+            color: #888;
+            font-weight: normal;
+          }
+        }
+      }
+
+      .meal-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr 1fr;
+        gap: 1.5rem;
+      }
+    }
+  }
+}

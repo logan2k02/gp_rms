@@ -1,64 +1,293 @@
-<mat-menu #menu="matMenu">
-  <button mat-menu-item>
-    <mat-icon>dialpad</mat-icon>
-    <span>Redial</span>
-  </button>
-  <button mat-menu-item disabled>
-    <mat-icon>voicemail</mat-icon>
-    <span>Check voice mail</span>
-  </button>
-  <button mat-menu-item>
-    <mat-icon>notifications_off</mat-icon>
-    <span>Disable alerts</span>
-  </button>
-</mat-menu>
+<!-- dashboard.component.html -->
+<div class="dashboard-container">
+  <mat-sidenav-container class="sidenav-container">
+    <mat-sidenav-content class="main-content">
+      <!-- Header -->
+      <div class="header">
+        <h2>Dashboard</h2>
+      </div>
 
-<div class="kitchen-container" *ngIf="currentView === 'current'">
-  <!-- New + In Progress orders -->
-  <div class="order-section new-orders">
-    <h2>New Orders</h2>
-    <div class="cards">
-      <app-order-card></app-order-card>
-      <app-order-card></app-order-card>
-      <app-order-card></app-order-card>
-      <app-order-card></app-order-card>
-      <app-order-card></app-order-card>
-      <app-order-card></app-order-card>
-      <app-order-card></app-order-card>
-    </div>
-  </div>
+      <!-- Stats Cards -->
+      <div class="stats-row">
+        <mat-card class="stat-card blue">
+          <mat-card-content>
+            <div class="stat-icon">
+              <mat-icon>star</mat-icon>
+            </div>
+            <div class="stat-info">
+              <div class="stat-value">4.5</div>
+              <div class="stat-label">Average Ratings</div>
+            </div>
+          </mat-card-content>
+        </mat-card>
 
-  <div class="order-section in-progress-orders">
-    <h2>In Progress</h2>
-    <div class="cards">
-      <app-order-card></app-order-card>
-      <app-order-card></app-order-card>
-      <app-order-card></app-order-card>
-      <app-order-card></app-order-card>
-      <app-order-card></app-order-card>
-      <app-order-card></app-order-card>
-    </div>
-  </div>
-</div>
+        <mat-card class="stat-card purple">
+          <mat-card-content>
+            <div class="stat-icon">
+              <mat-icon>timer</mat-icon>
+            </div>
+            <div class="stat-info">
+              <div class="stat-value">14</div>
+              <div class="stat-label">Late Orders</div>
+            </div>
+          </mat-card-content>
+        </mat-card>
 
-<div class="kitchen-container" *ngIf="currentView === 'archived'">
-  <!-- Completed + Rejected orders -->
-  <div class="order-section completed-orders">
-    <h2>Completed Orders</h2>
-    <div class="cards">
-      <app-order-card></app-order-card>
-      <app-order-card></app-order-card>
-      <app-order-card></app-order-card>
-      <app-order-card></app-order-card>
-    </div>
-  </div>
+        <mat-card class="stat-card teal">
+          <mat-card-content>
+            <div class="stat-icon">
+              <mat-icon>shopping_bag</mat-icon>
+            </div>
+            <div class="stat-info">
+              <div class="stat-value">5,985</div>
+              <div class="stat-label">Orders delivered this week</div>
+            </div>
+          </mat-card-content>
+        </mat-card>
+      </div>
 
-  <div class="order-section rejected-orders">
-    <h2>Rejected Orders</h2>
-    <div class="cards">
-      <app-order-card></app-order-card>
-      <app-order-card></app-order-card>
-      <app-order-card></app-order-card>
-    </div>
-  </div>
+      <!-- Charts Row -->
+      <div class="charts-row">
+        <!-- Revenue Chart -->
+        <mat-card class="chart-card revenue-chart">
+          <mat-card-header>
+            <mat-card-title>Performance</mat-card-title>
+            <mat-card-subtitle>
+              <mat-chip-set>
+                <mat-chip selected>This week</mat-chip>
+                <mat-chip>Last week</mat-chip>
+              </mat-chip-set>
+            </mat-card-subtitle>
+            <div class="chart-actions">
+              <mat-form-field appearance="outline" class="week-selector">
+                <mat-select value="week">
+                  <mat-option value="week">Week</mat-option>
+                  <mat-option value="month">Month</mat-option>
+                  <mat-option value="year">Year</mat-option>
+                </mat-select>
+              </mat-form-field>
+            </div>
+          </mat-card-header>
+          <mat-card-content>
+            <div class="chart-placeholder">
+              <!-- Area chart would go here -->
+              <svg width="100%" height="200" viewBox="0 0 400 200">
+                <defs>
+                  <linearGradient
+                    id="gradient1"
+                    x1="0%"
+                    y1="0%"
+                    x2="0%"
+                    y2="100%"
+                  >
+                    <stop
+                      offset="0%"
+                      style="stop-color: #4fc3f7; stop-opacity: 0.8"
+                    />
+                    <stop
+                      offset="100%"
+                      style="stop-color: #4fc3f7; stop-opacity: 0.1"
+                    />
+                  </linearGradient>
+                  <linearGradient
+                    id="gradient2"
+                    x1="0%"
+                    y1="0%"
+                    x2="0%"
+                    y2="100%"
+                  >
+                    <stop
+                      offset="0%"
+                      style="stop-color: #ab47bc; stop-opacity: 0.8"
+                    />
+                    <stop
+                      offset="100%"
+                      style="stop-color: #ab47bc; stop-opacity: 0.1"
+                    />
+                  </linearGradient>
+                </defs>
+                <!-- This week data -->
+                <path
+                  d="M0,150 Q100,120 200,100 T400,80 L400,200 L0,200 Z"
+                  fill="url(#gradient1)"
+                />
+                <!-- Last week data -->
+                <path
+                  d="M0,180 Q100,160 200,140 T400,120 L400,200 L0,200 Z"
+                  fill="url(#gradient2)"
+                />
+                <!-- X-axis labels would be positioned here -->
+              </svg>
+              <div class="chart-labels">
+                <span>Sun</span>
+                <span>Mon</span>
+                <span>Tue</span>
+                <span>Wed</span>
+                <span>Thu</span>
+                <span>Fri</span>
+                <span>Sat</span>
+              </div>
+            </div>
+          </mat-card-content>
+        </mat-card>
+
+        <!-- Orders Pie Chart -->
+        <mat-card class="chart-card orders-chart">
+          <mat-card-header>
+            <mat-card-title>Orders</mat-card-title>
+          </mat-card-header>
+          <mat-card-content>
+            <div class="pie-chart-container">
+              <svg width="200" height="200" viewBox="0 0 200 200">
+                <!-- Pie chart segments -->
+                <circle
+                  cx="100"
+                  cy="100"
+                  r="80"
+                  fill="none"
+                  stroke="#e0e0e0"
+                  stroke-width="20"
+                />
+                <!-- Accepted: 60% -->
+                <circle
+                  cx="100"
+                  cy="100"
+                  r="80"
+                  fill="none"
+                  stroke="#2196f3"
+                  stroke-width="20"
+                  stroke-dasharray="301.6 502.7"
+                  stroke-dashoffset="0"
+                  transform="rotate(-90 100 100)"
+                />
+                <!-- Cancelled: 28% -->
+                <circle
+                  cx="100"
+                  cy="100"
+                  r="80"
+                  fill="none"
+                  stroke="#9c27b0"
+                  stroke-width="20"
+                  stroke-dasharray="140.7 502.7"
+                  stroke-dashoffset="-301.6"
+                  transform="rotate(-90 100 100)"
+                />
+                <!-- Out of stock: 12% -->
+                <circle
+                  cx="100"
+                  cy="100"
+                  r="80"
+                  fill="none"
+                  stroke="#4caf50"
+                  stroke-width="20"
+                  stroke-dasharray="60.3 502.7"
+                  stroke-dashoffset="-442.3"
+                  transform="rotate(-90 100 100)"
+                />
+
+                <!-- Center percentage -->
+                <text
+                  x="100"
+                  y="100"
+                  text-anchor="middle"
+                  dy="0.3em"
+                  class="pie-center-text"
+                >
+                  60%
+                </text>
+              </svg>
+
+              <div class="pie-legend">
+                <div class="legend-item">
+                  <div class="legend-color blue"></div>
+                  <span>Accepted</span>
+                </div>
+                <div class="legend-item">
+                  <div class="legend-color purple"></div>
+                  <span>Cancelled</span>
+                </div>
+                <div class="legend-item">
+                  <div class="legend-color green"></div>
+                  <span>Out of stock</span>
+                </div>
+              </div>
+            </div>
+          </mat-card-content>
+        </mat-card>
+      </div>
+
+      <!-- Orders Table -->
+      <mat-card class="orders-table-card">
+        <mat-card-header>
+          <mat-card-title>Order History</mat-card-title>
+        </mat-card-header>
+        <mat-card-content>
+          <table mat-table class="orders-table">
+            <ng-container matColumnDef="orderId">
+              <th mat-header-cell *matHeaderCellDef>ORDER ID</th>
+              <td mat-cell *matCellDef="let order">{{ order.id }}</td>
+            </ng-container>
+
+            <ng-container matColumnDef="item">
+              <th mat-header-cell *matHeaderCellDef>ITEM</th>
+              <td mat-cell *matCellDef="let order">
+                <div class="item-info">
+                  <mat-icon class="item-icon">{{ order.icon }}</mat-icon>
+                  <span>{{ order.item }}</span>
+                </div>
+              </td>
+            </ng-container>
+
+            <ng-container matColumnDef="address">
+              <th mat-header-cell *matHeaderCellDef>ADDRESS</th>
+              <td mat-cell *matCellDef="let order">{{ order.address }}</td>
+            </ng-container>
+
+            <ng-container matColumnDef="status">
+              <th mat-header-cell *matHeaderCellDef>STATUS</th>
+              <td mat-cell *matCellDef="let order">
+                <mat-chip [class]="order.statusClass">{{
+                  order.status
+                }}</mat-chip>
+              </td>
+            </ng-container>
+
+            <ng-container matColumnDef="time">
+              <th mat-header-cell *matHeaderCellDef>ESTIMATED DELIVERY TIME</th>
+              <td mat-cell *matCellDef="let order">{{ order.time }}</td>
+            </ng-container>
+
+            <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+            <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+          </table>
+
+          <!-- Table rows with dummy data -->
+          <div class="table-container">
+            <div class="table-row header-row">
+              <div class="col">ORDER ID</div>
+              <div class="col">ITEM</div>
+              <div class="col">ADDRESS</div>
+              <div class="col">STATUS</div>
+              <div class="col">ESTIMATED DELIVERY TIME</div>
+            </div>
+
+            <div class="table-row">
+              <div class="col">1</div>
+              <div class="col">
+                <div class="item-info">
+                  <mat-icon class="item-icon">search</mat-icon>
+                  <span>item</span>
+                </div>
+              </div>
+              <div class="col">alkfjla</div>
+              <div class="col">
+                <mat-chip>active</mat-chip>
+              </div>
+              <div class="col">8:00</div>
+            </div>
+          </div>
+        </mat-card-content>
+      </mat-card>
+    </mat-sidenav-content>
+  </mat-sidenav-container>
 </div>

@@ -1,0 +1,109 @@
+<div class="meal-dashboard">
+  <main class="content">
+    <h2>Meals</h2>
+
+    <div class="category">
+      <mat-accordion>
+        <mat-expansion-panel
+          (opened)="panelOpenState.set(true)"
+          (closed)="panelOpenState.set(false)"
+        >
+          <mat-expansion-panel-header>
+            <mat-panel-title> Burgers </mat-panel-title>
+            <mat-panel-description>
+              <span class="count">3 items</span>
+            </mat-panel-description>
+          </mat-expansion-panel-header>
+          <div class="meal-grid">
+            <app-meal></app-meal>
+            <app-meal></app-meal>
+            <app-meal></app-meal>
+            <app-meal></app-meal>
+            <app-meal></app-meal>
+            <app-meal></app-meal>
+          </div>
+        </mat-expansion-panel>
+
+        <mat-expansion-panel
+          (opened)="panelOpenState.set(true)"
+          (closed)="panelOpenState.set(false)"
+        >
+          <mat-expansion-panel-header>
+            <mat-panel-title> Soups </mat-panel-title>
+            <mat-panel-description>
+              <span class="count">3 items</span>
+            </mat-panel-description>
+          </mat-expansion-panel-header>
+          <div class="meal-grid">
+            <app-meal></app-meal>
+            <app-meal></app-meal>
+            <app-meal></app-meal>
+            <app-meal></app-meal>
+            <app-meal></app-meal>
+            <app-meal></app-meal>
+          </div>
+        </mat-expansion-panel>
+
+        <mat-expansion-panel
+          (opened)="panelOpenState.set(true)"
+          (closed)="panelOpenState.set(false)"
+        >
+          <mat-expansion-panel-header>
+            <mat-panel-title> Chicken </mat-panel-title>
+            <mat-panel-description>
+              <span class="count">3 items</span>
+            </mat-panel-description>
+          </mat-expansion-panel-header>
+          <div class="meal-grid">
+            <app-meal></app-meal>
+            <app-meal></app-meal>
+            <app-meal></app-meal>
+            <app-meal></app-meal>
+            <app-meal></app-meal>
+            <app-meal></app-meal>
+          </div>
+        </mat-expansion-panel>
+
+        <mat-expansion-panel
+          (opened)="panelOpenState.set(true)"
+          (closed)="panelOpenState.set(false)"
+        >
+          <mat-expansion-panel-header>
+            <mat-panel-title> Pizza </mat-panel-title>
+            <mat-panel-description>
+              <span class="count">3 items</span>
+            </mat-panel-description>
+          </mat-expansion-panel-header>
+          <div class="meal-grid">
+            <app-meal></app-meal>
+            <app-meal></app-meal>
+            <app-meal></app-meal>
+            <app-meal></app-meal>
+            <app-meal></app-meal>
+            <app-meal></app-meal>
+          </div>
+        </mat-expansion-panel>
+
+        <mat-expansion-panel
+          (opened)="panelOpenState.set(true)"
+          (closed)="panelOpenState.set(false)"
+        >
+          <mat-expansion-panel-header>
+            <mat-panel-title> Pasta </mat-panel-title>
+            <mat-panel-description>
+              <span class="count">3 items</span>
+            </mat-panel-description>
+          </mat-expansion-panel-header>
+          <div class="meal-grid">
+            <app-meal></app-meal>
+            <app-meal></app-meal>
+            <app-meal></app-meal>
+            <app-meal></app-meal>
+            <app-meal></app-meal>
+            <app-meal></app-meal>
+          </div>
+        </mat-expansion-panel>
+      </mat-accordion>
+    </div>
+  </main>
+</div>
