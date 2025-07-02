@@ -1,10 +1,10 @@
 import { CommonModule } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
+import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
-import { MatChip, MatChipSet } from '@angular/material/chips';
+import { MatChip } from '@angular/material/chips';
 import { MatFormField } from '@angular/material/form-field';
 import { MatIconModule } from '@angular/material/icon';
-import { MatListItem, MatNavList } from '@angular/material/list';
 import { MatSelectModule } from '@angular/material/select';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import {
@@ -12,6 +12,7 @@ import {
   MatHeaderCellDef,
   MatHeaderRowDef,
   MatRowDef,
+  MatTableModule,
 } from '@angular/material/table';
 
 export interface Order {
@@ -44,11 +45,12 @@ export interface StatCard {
     MatCellDef,
     MatIconModule,
     MatSidenavModule,
-    MatChipSet,
     MatChip,
     MatFormField,
     MatSelectModule,
     MatHeaderRowDef,
+    MatTableModule,
+    MatButtonModule,
   ],
 })
 export class HomeComponent implements OnInit {
@@ -129,11 +131,32 @@ export class HomeComponent implements OnInit {
   ];
 
   // Chart data
-  revenueData = {
-    thisWeek: [120, 140, 180, 160, 200, 190, 210],
-    lastWeek: [100, 120, 150, 140, 170, 160, 180],
-    labels: ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'],
-  };
+  stockFilter = 'all';
+
+  lowStockIngredients = [
+    { name: 'Tomato Sauce', currentStock: 1.2, minRequired: 2.0, unit: 'L' },
+    {
+      name: 'Mozzarella Cheese',
+      currentStock: 0.5,
+      minRequired: 1.0,
+      unit: 'kg',
+    },
+    { name: 'Basil', currentStock: 0.1, minRequired: 0.5, unit: 'kg' },
+    { name: 'Pizza Dough', currentStock: 30, minRequired: 50, unit: 'pcs' },
+    { name: 'Olive Oil', currentStock: 1.0, minRequired: 0.5, unit: 'L' },
+  ];
+
+  displayedColumnss: string[] = [
+    'name',
+    'currentStock',
+    'minRequired',
+    'status',
+    'action',
+  ];
+
+  requestMore(item: any): void {
+    alert(`Requesting more of: ${item.name}`);
+  }
 
   ordersData = {
     accepted: 60,
@@ -158,52 +181,6 @@ export class HomeComponent implements OnInit {
     // this.dashboardService.getStats().subscribe(data => this.statsCards = data);
     // this.dashboardService.getOrders().subscribe(data => this.ongoingOrders = data);
     // this.dashboardService.getRevenueData().subscribe(data => this.revenueData = data);
-  }
-
-  onTimeFrameChange(timeFrame: string): void {
-    this.selectedTimeFrame = timeFrame;
-    // Reload chart data based on selected timeframe
-    this.loadChartData(timeFrame);
-  }
-
-  loadChartData(timeFrame: string): void {
-    // Simulate loading different data based on timeframe
-    switch (timeFrame) {
-      case 'week':
-        this.revenueData = {
-          thisWeek: [120, 140, 180, 160, 200, 190, 210],
-          lastWeek: [100, 120, 150, 140, 170, 160, 180],
-          labels: ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'],
-        };
-        break;
-      case 'month':
-        this.revenueData = {
-          thisWeek: [1200, 1400, 1800, 1600, 2000, 1900, 2100],
-          lastWeek: [1000, 1200, 1500, 1400, 1700, 1600, 1800],
-          labels: ['Week 1', 'Week 2', 'Week 3', 'Week 4'],
-        };
-        break;
-      case 'year':
-        this.revenueData = {
-          thisWeek: [12000, 14000, 18000, 16000, 20000, 19000, 21000],
-          lastWeek: [10000, 12000, 15000, 14000, 17000, 16000, 18000],
-          labels: [
-            'Jan',
-            'Feb',
-            'Mar',
-            'Apr',
-            'May',
-            'Jun',
-            'Jul',
-            'Aug',
-            'Sep',
-            'Oct',
-            'Nov',
-            'Dec',
-          ],
-        };
-        break;
-    }
   }
 
   getStatusChipClass(status: string): string {

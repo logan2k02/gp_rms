@@ -140,7 +140,7 @@ export const routes: Routes = [
       },
       {
         path: 'kitchen-manager',
-        // canActivate: [staffAuthRequiredGuard(StaffRole.KitchenManager)],
+        canActivate: [staffAuthRequiredGuard(StaffRole.KitchenManager)],
         children: [
           {
             path: '',

@@ -49,85 +49,87 @@
       <!-- Charts Row -->
       <div class="charts-row">
         <!-- Revenue Chart -->
-        <mat-card class="chart-card revenue-chart">
+        <mat-card class="chart-card stock-warning-card">
           <mat-card-header>
-            <mat-card-title>Performance</mat-card-title>
-            <mat-card-subtitle>
-              <mat-chip-set>
-                <mat-chip selected>This week</mat-chip>
-                <mat-chip>Last week</mat-chip>
-              </mat-chip-set>
-            </mat-card-subtitle>
+            <mat-card-title>Low Stock Ingredients</mat-card-title>
+            <mat-card-subtitle
+              >These ingredients are running low</mat-card-subtitle
+            >
             <div class="chart-actions">
-              <mat-form-field appearance="outline" class="week-selector">
-                <mat-select value="week">
-                  <mat-option value="week">Week</mat-option>
-                  <mat-option value="month">Month</mat-option>
-                  <mat-option value="year">Year</mat-option>
+              <mat-form-field appearance="outline" class="filter-select">
+                <mat-select [(value)]="stockFilter">
+                  <mat-option value="all">All</mat-option>
+                  <mat-option value="critical">Critical Only</mat-option>
                 </mat-select>
               </mat-form-field>
             </div>
           </mat-card-header>
+
           <mat-card-content>
-            <div class="chart-placeholder">
-              <!-- Area chart would go here -->
-              <svg width="100%" height="200" viewBox="0 0 400 200">
-                <defs>
-                  <linearGradient
-                    id="gradient1"
-                    x1="0%"
-                    y1="0%"
-                    x2="0%"
-                    y2="100%"
+            <table
+              mat-table
+              [dataSource]="lowStockIngredients"
+              class="mat-elevation-z2 stock-table"
+            >
+              <!-- Ingredient Name Column -->
+              <ng-container matColumnDef="name">
+                <th mat-header-cell *matHeaderCellDef>Ingredient</th>
+                <td mat-cell *matCellDef="let item">{{ item.name }}</td>
+              </ng-container>
+
+              <!-- Current Stock Column -->
+              <ng-container matColumnDef="currentStock">
+                <th mat-header-cell *matHeaderCellDef>Current Stock</th>
+                <td mat-cell *matCellDef="let item">
+                  {{ item.currentStock }} {{ item.unit }}
+                </td>
+              </ng-container>
+
+              <!-- Minimum Required Column -->
+              <ng-container matColumnDef="minRequired">
+                <th mat-header-cell *matHeaderCellDef>Minimum Required</th>
+                <td mat-cell *matCellDef="let item">
+                  {{ item.minRequired }} {{ item.unit }}
+                </td>
+              </ng-container>
+
+              <!-- Status Column -->
+              <ng-container matColumnDef="status">
+                <th mat-header-cell *matHeaderCellDef>Status</th>
+                <td mat-cell *matCellDef="let item">
+                  <mat-chip
+                    color="warn"
+                    selected
+                    *ngIf="item.currentStock < item.minRequired"
                   >
-                    <stop
-                      offset="0%"
-                      style="stop-color: #4fc3f7; stop-opacity: 0.8"
-                    />
-                    <stop
-                      offset="100%"
-                      style="stop-color: #4fc3f7; stop-opacity: 0.1"
-                    />
-                  </linearGradient>
-                  <linearGradient
-                    id="gradient2"
-                    x1="0%"
-                    y1="0%"
-                    x2="0%"
-                    y2="100%"
+                    Low
+                  </mat-chip>
+                  <mat-chip
+                    color="accent"
+                    *ngIf="item.currentStock >= item.minRequired"
                   >
-                    <stop
-                      offset="0%"
-                      style="stop-color: #ab47bc; stop-opacity: 0.8"
-                    />
-                    <stop
-                      offset="100%"
-                      style="stop-color: #ab47bc; stop-opacity: 0.1"
-                    />
-                  </linearGradient>
-                </defs>
-                <!-- This week data -->
-                <path
-                  d="M0,150 Q100,120 200,100 T400,80 L400,200 L0,200 Z"
-                  fill="url(#gradient1)"
-                />
-                <!-- Last week data -->
-                <path
-                  d="M0,180 Q100,160 200,140 T400,120 L400,200 L0,200 Z"
-                  fill="url(#gradient2)"
-                />
-                <!-- X-axis labels would be positioned here -->
-              </svg>
-              <div class="chart-labels">
-                <span>Sun</span>
-                <span>Mon</span>
-                <span>Tue</span>
-                <span>Wed</span>
-                <span>Thu</span>
-                <span>Fri</span>
-                <span>Sat</span>
-              </div>
-            </div>
+                    OK
+                  </mat-chip>
+                </td>
+              </ng-container>
+
+              <!-- Action Column -->
+              <ng-container matColumnDef="action">
+                <th mat-header-cell *matHeaderCellDef>Action</th>
+                <td mat-cell *matCellDef="let item">
+                  <button
+                    mat-stroked-button
+                    color="primary"
+                    (click)="requestMore(item)"
+                  >
+                    Request More
+                  </button>
+                </td>
+              </ng-container>
+
+              <tr mat-header-row *matHeaderRowDef="displayedColumnss"></tr>
+              <tr mat-row *matRowDef="let row; columns: displayedColumnss"></tr>
+            </table>
           </mat-card-content>
         </mat-card>
 
